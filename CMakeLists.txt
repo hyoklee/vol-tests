@@ -1,4 +1,5 @@
-cmake_minimum_required(VERSION 2.8.12.2 FATAL_ERROR)
+# cmake_minimum_required(VERSION 2.8.12.2 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.12)
 project(HDF5_VOL_TEST C)
 
 #------------------------------------------------------------------------------
@@ -92,12 +93,12 @@ include_directories(
 # External dependencies
 #------------------------------------------------------------------------------
 # HDF5
-find_package(HDF5 NO_MODULE NAMES hdf5 COMPONENTS C shared)
+# find_package(HDF5 NO_MODULE NAMES hdf5 COMPONENTS C shared)
 if(HDF5_FOUND)
   set(HDF5_C_SHARED_LIBRARY hdf5-shared)
   if(NOT TARGET ${HDF5_C_SHARED_LIBRARY})
       message(FATAL_ERROR "Could not find hdf5 shared target, please make "
-      "sure that HDF5 has ben compiled with shared libraries enabled.")
+      "sure that HDF5 has been compiled with shared libraries enabled.")
   endif()
   set(HDF5_VOL_TEST_EXT_PKG_DEPENDENCIES
     ${HDF5_VOL_TEST_EXT_PKG_DEPENDENCIES}
