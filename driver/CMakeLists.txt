@@ -15,3 +15,11 @@ include_directories(${CMAKE_CURRENT_BINARY_DIR}/kwsys)
 
 add_executable(h5vl_test_driver h5vl_test_driver.cxx)
 target_link_libraries(h5vl_test_driver h5vl_test_sys)
+install(
+  TARGETS
+    h5vl_test_driver
+  EXPORT
+    ${HDF5_VOL_TEST_EXPORTED_TARGETS}
+  LIBRARY DESTINATION ${HDF5_VOL_TEST_INSTALL_LIB_DIR}
+  ARCHIVE DESTINATION ${HDF5_VOL_TEST_INSTALL_LIB_DIR}
+)
