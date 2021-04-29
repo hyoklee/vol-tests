@@ -324,7 +324,7 @@ target_link_libraries(h5delete
     ${HDF5_VOL_TEST_EXT_LIB_DEPENDENCIES}
     ${HDF5_VOL_TEST_EXT_PKG_DEPENDENCIES}
 )
-install(h5delete DESTINATION /tmp)
+
 #------------------------------------------------------------------------------
 # Tests
 #------------------------------------------------------------------------------
