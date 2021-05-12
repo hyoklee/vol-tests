@@ -296,7 +296,7 @@ if(HDF5_VOL_TEST_ENABLE_PARALLEL)
         ${CMAKE_CURRENT_SOURCE_DIR}/hdf5_testpar/t_file_image.c
         ${CMAKE_CURRENT_SOURCE_DIR}/hdf5_testpar/t_coll_md_read.c
         ${CMAKE_CURRENT_SOURCE_DIR}/hdf5_testpar/t_chunk_alloc.c
-        # ${CMAKE_CURRENT_SOURCE_DIR}/hdf5_testpar/t_filter_read.c
+        ${CMAKE_CURRENT_SOURCE_DIR}/hdf5_testpar/t_filter_read.c
       )
     else()
       add_executable(h5_partest_${hdf5_partest}
