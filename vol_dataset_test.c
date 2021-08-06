@@ -3118,6 +3118,7 @@ test_dataset_property_lists(void)
     hid_t       dset_dtype1 = H5I_INVALID_HID, dset_dtype2 = H5I_INVALID_HID, dset_dtype3 = H5I_INVALID_HID, dset_dtype4 = H5I_INVALID_HID;
     hid_t       space_id = H5I_INVALID_HID;
     char       *tmp_prefix = NULL;
+    char        vol_name[5];
 
     TESTING_MULTIPART("dataset property list operations");
 
@@ -3126,6 +3127,13 @@ test_dataset_property_lists(void)
     if ((file_id = H5Fopen(vol_test_filename, H5F_ACC_RDWR, H5P_DEFAULT)) < 0) {
         H5_FAILED();
         HDprintf("    couldn't open file '%s'\n", vol_test_filename);
+        goto error;
+    }
+
+    /** for DAOS VOL, this test is problematic since auto chunking can be selected, so skip for now */
+    if (H5VLget_connector_name(file_id, vol_name, 5) < 0) {
+        H5_FAILED();
+        HDprintf("    couldn't get VOL NAME '%s'\n", DATASET_TEST_GROUP_NAME);
         goto error;
     }
 
@@ -3227,7 +3235,8 @@ test_dataset_property_lists(void)
                     err_ret = H5Pget_chunk(dcpl_id2, DATASET_PROPERTY_LIST_TEST_SPACE_RANK, tmp_chunk_dims);
                 } H5E_END_TRY;
 
-                if (err_ret >= 0) {
+		/* DAOS VOL can auto chunk, so don't fail */
+		if (err_ret >= 0 && strcmp(vol_name, "daos") != 0) {
                     H5_FAILED();
                     HDprintf("    property list 2 shouldn't have had chunk dimensionality set (not a chunked layout)\n");
                     PART_ERROR(H5Dget_create_plist);
@@ -3410,7 +3419,8 @@ test_dataset_property_lists(void)
                     err_ret = H5Pget_chunk(dcpl_id2, DATASET_PROPERTY_LIST_TEST_SPACE_RANK, tmp_chunk_dims);
                 } H5E_END_TRY;
 
-                if (err_ret >= 0) {
+		/* DAOS VOL can auto chunk, so don't fail */
+		if (err_ret >= 0 && strcmp(vol_name, "daos") != 0) {
                     H5_FAILED();
                     HDprintf("    property list 2 shouldn't have had chunk dimensionality set (not a chunked layout)\n");
                     PART_ERROR(H5Dget_create_plist_reopened);
@@ -7770,6 +7780,7 @@ test_dataset_set_extent_invalid_params(void)
     hid_t   dset_dtype = H5I_INVALID_HID;
     hid_t   chunked_dcpl_id = H5I_INVALID_HID, compact_dcpl_id = H5I_INVALID_HID, contiguous_dcpl_id = H5I_INVALID_HID;
     hid_t   fspace_id = H5I_INVALID_HID, compact_fspace_id = H5I_INVALID_HID;
+    char   vol_name[5];
 
     TESTING_MULTIPART("H5Dset_extent with invalid parameters");
 
@@ -7779,6 +7790,19 @@ test_dataset_set_extent_invalid_params(void)
         H5_FAILED();
         HDprintf("    couldn't open file '%s'\n", vol_test_filename);
         goto error;
+    }
+
+    /** for DAOS VOL, this test is problematic since auto chunking can be selected, so skip for now */
+    if (H5VLget_connector_name(file_id, vol_name, 5) < 0) {
+        H5_FAILED();
+        HDprintf("    couldn't get VOL NAME '%s'\n", DATASET_TEST_GROUP_NAME);
+        goto error;
+    }
+    if (strcmp(vol_name, "daos") == 0) {
+        if (H5Fclose(file_id) < 0)
+            TEST_ERROR
+        SKIPPED();
+	return 0;
     }
 
     if ((container_group = H5Gopen2(file_id, DATASET_TEST_GROUP_NAME, H5P_DEFAULT)) < 0) {
