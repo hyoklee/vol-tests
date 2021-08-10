@@ -4,7 +4,7 @@ name: Test HDF5 develop branch
 on:
   # Triggers the workflow on push or pull request events for the develop branch
   push:
-    branches: [ master ]
+    branches: [ develop ]
   # Allows you to run this workflow manually from the Actions tab    
   workflow_dispatch:
 jobs:
