@@ -1,4 +1,4 @@
-name: cmake
+name: Test HDF5 develop branch
 
 # Controls when the action will run. 
 on:
