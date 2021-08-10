@@ -1,0 +1,53 @@
+name: cmake 1.12.1
+
+# Controls when the action will run. 
+on:
+  # Triggers the workflow on push or pull request events for the develop branch
+  push:
+    branches: [ master ]
+  # Allows you to run this workflow manually from the Actions tab    
+  workflow_dispatch:
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout vol-tests
+      uses: actions/checkout@v2
+    - name: Checkout HDF5
+      uses: actions/checkout@v2
+      with:
+        repository: HDFGroup/hdf5
+        ref: 820695a78e3a277daea1bdcbb8ad54b8ee6650a5
+        path: hdf5
+
+    - name: Install dependencies
+      run: sudo apt-get install ninja-build automake autoconf libtool libtool-bin
+    - name: Install HDF5
+      run: |
+        mkdir hdf5/build
+        cd hdf5/build
+        cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local ..
+        sudo make -j2 install
+        cd ..
+        git rev-parse HEAD > git.txt
+        
+    - name: Test performance
+      run: |
+        pwd
+        ls
+        mkdir build
+        cd build
+        cmake .. -DHDF5_DIR=/usr/local
+        make
+        ctest
+        pwd
+        ls
+        
+    - name: Upload
+      uses: actions/upload-artifact@v2
+      with:
+        name: git.txt
+        path: ${{ runner.workspace }}/vol-tests/hdf5/git.txt
+
