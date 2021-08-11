@@ -1,5 +1,4 @@
-# cmake_minimum_required(VERSION 2.8.12.2 FATAL_ERROR)
-cmake_minimum_required(VERSION 3.12)
+cmake_minimum_required(VERSION 2.8.12.2 FATAL_ERROR)
 project(HDF5_VOL_TEST C)
 
 #------------------------------------------------------------------------------
@@ -93,7 +92,7 @@ include_directories(
 # External dependencies
 #------------------------------------------------------------------------------
 # HDF5
-# find_package(HDF5 NO_MODULE NAMES hdf5 COMPONENTS C shared)
+find_package(HDF5 NO_MODULE NAMES hdf5 COMPONENTS C shared)
 if(HDF5_FOUND)
   set(HDF5_C_SHARED_LIBRARY hdf5-shared)
   if(NOT TARGET ${HDF5_C_SHARED_LIBRARY})
@@ -277,7 +276,6 @@ foreach(hdf5_test ${hdf5_tests})
     ${HDF5_VOL_TEST_EXT_LIB_DEPENDENCIES}
     ${HDF5_VOL_TEST_EXT_PKG_DEPENDENCIES}
   )
-  
 endforeach()
 
 # Parallel tests
@@ -313,7 +311,6 @@ if(HDF5_VOL_TEST_ENABLE_PARALLEL)
     )
   endforeach()
 endif()
-
 
 #------------------------------------------------------------------------------
 # Tests
