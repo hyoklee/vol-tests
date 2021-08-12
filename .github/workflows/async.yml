@@ -32,7 +32,7 @@ jobs:
         path: vol-async
     
     - name: Install dependencies
-      run: sudo apt-get install ninja-build automake autoconf libtool libtool-bin
+      run: sudo apt-get install ninja-build automake autoconf libtool libtool-bin mpi
     - name: Install HDF5
       run: |
         mkdir hdf5/build
