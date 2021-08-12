@@ -41,12 +41,13 @@ jobs:
         sudo make -j2 install
         cd ..
         git rev-parse HEAD > git.txt
-    - name: Install Aargbots
+    - name: Install Argobots
       run: |
         cd abt
         ./autogen.sh
         ./configure --prefix=/usr/local
-        make && make install
+        make -j2
+        sudo make -j2 install
         cd ..
     - name: Install vol-async
       run: |
