@@ -35,8 +35,8 @@ jobs:
         CXX: mpic++
         CC: mpicc
       run: |
-        mkdir vol-external-passthrough/build
-        cd vol-external-passthrough/build
+        mkdir adios2/build
+        cd adios2/build
         cmake -DCMAKE_INSTALL_PREFIX=/usr/local -DADIOS2_USE_HDF5:BOOL=ON ..
         make
         ctest
