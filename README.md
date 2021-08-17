@@ -1,5 +1,6 @@
 # HDF5 VOL Tests
-[![async](https://github.com/hyoklee/vol-tests/actions/workflows/async.yml/badge.svg)](https://github.com/hyoklee/vol-tests/actions/workflows/async.yml)
+[![Test HDF5 async VOL](https://github.com/hyoklee/vol-tests/actions/workflows/async.yml/badge.svg)](https://github.com/hyoklee/vol-tests/actions/workflows/async.yml)
+[![Test HDF5 cache VOL](https://github.com/hyoklee/vol-tests/actions/workflows/cache.yml/badge.svg)](https://github.com/hyoklee/vol-tests/actions/workflows/cache.yml)
 
 This repository contains several test applications that exercise [HDF5](https://github.com/HDFGroup/hdf5)'s
 public API and serve as regression tests for HDF5 [VOL Connectors](https://portal.hdfgroup.org/display/HDF5/Virtual+Object+Layer).
