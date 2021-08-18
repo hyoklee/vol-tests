@@ -40,13 +40,11 @@ jobs:
         CXX: mpic++
         CC: mpicc
       run: |
-        mkdir vol-log-based/build
-        cd vol-log-based/build
-        autoreconf -i
-	./configure --prefix=/usr/local --with-hdf5=/usr/local --enable-shared --enable-zlib
-        make -j2
-        make check
-        make install
+        mkdir vol-rest/build
+        cd vol-rest/build
+        cmake ..
+        make
+        ctest
     - name: Test performance
       env:
         HDF5_PLUGIN_PATH: /usr/local/lib
