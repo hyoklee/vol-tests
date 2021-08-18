@@ -38,7 +38,7 @@ jobs:
         mkdir vol-log-based/build
         cd vol-log-based/build
         autoreconf -i
-	./configure --prefix=/usr/local --with-hdf5=/usr/local --enable-shared --enable-zlib
+        ./configure --prefix=/usr/local --with-hdf5=/usr/local --enable-shared --enable-zlib
         make -j2
         make check
         make install
