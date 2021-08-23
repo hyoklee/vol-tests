@@ -78,7 +78,7 @@ jobs:
         ctest
         pwd
         ls
-        ./h5vl_test | tee ../output.txt
+        ./bin/h5vl_test | tee ../output.txt
         
     - name: Upload
       uses: actions/upload-artifact@v2
