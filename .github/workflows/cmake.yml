@@ -43,10 +43,24 @@ jobs:
         ctest
         pwd
         ls
-        
+        ./bin/h5vl_test | tee ../output.txt     
     - name: Upload
       uses: actions/upload-artifact@v2
       with:
         name: git.txt
-        path: ${{ runner.workspace }}/vol-tests/hdf5/git.txt
+        path: ${{ runner.workspace }}/vol-tests/output.txt
+
+    - name: Store benchmark result
+      uses: hyoklee/github-action-benchmark@v1
+      with:
+        name: Catch2 Benchmark
+        tool: "catch2"
+        output-file-path: ${{ runner.workspace }}/vol-tests/output.txt
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        skip-fetch-gh-pages: false
+        auto-push: true
+        alert-threshold: "100%"
+        comment-on-alert: false
+        fail-on-alert: false
+        alert-comment-cc-users: "@hyoklee"         
 
