@@ -43,10 +43,11 @@ jobs:
         ctest
         pwd
         ls
+        ./bin/h5vl_test | tee ../output.txt
         
     - name: Upload
       uses: actions/upload-artifact@v2
       with:
-        name: git.txt
-        path: ${{ runner.workspace }}/vol-tests/hdf5/git.txt
+        name: output.txt
+        path: ${{ runner.workspace }}/vol-tests/output.txt
 
