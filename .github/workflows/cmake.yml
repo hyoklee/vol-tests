@@ -43,7 +43,7 @@ jobs:
         # ctest
         pwd
         ls
-        ./bin/h5vl_test 1 | tee ../output.txt     
+        ./bin/h5vl_test --benchmark-samples 1 | tee ../output.txt     
     - name: Upload
       uses: actions/upload-artifact@v2
       with:
