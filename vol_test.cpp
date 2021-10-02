@@ -73,7 +73,7 @@ size_t n_tests_skipped_g;
 #else
 #define VOL_TESTS                                               \
     X(VOL_TEST_NULL,       "",         NULL,               0)   \
-    X(VOL_TEST_FILE,      "file",      vol_file_test,      0)   \
+    X(VOL_TEST_FILE,      "file",      vol_file_test,      1)   \
     X(VOL_TEST_GROUP,     "group",     vol_group_test,     0)   \
     X(VOL_TEST_DATASET,   "dataset",   vol_dataset_test,   0)   \
     X(VOL_TEST_DATATYPE,  "datatype",  vol_datatype_test,  0)   \

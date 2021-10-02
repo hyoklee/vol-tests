@@ -58,9 +58,11 @@ H5TEST_DLLVAR MPI_Info h5_io_info_g;         /* MPI INFO object for IO */
  * spaces.  If the h5_errors() is used for automatic error handling then
  * the H5_FAILED() macro is invoked automatically when an API function fails.
  */
-#define TESTING(WHAT)  {printf("Testing %-62s",WHAT); n_tests_run_g++; fflush(stdout);}
+/* #define TESTING(WHAT)  {printf("Testing %-62s",WHAT); n_tests_run_g++; fflush(stdout);} */
+#define TESTING(WHAT)  {n_tests_run_g++;}
 #define TESTING_2(WHAT)  {printf("  Testing %-60s",WHAT); n_tests_run_g++; fflush(stdout);}
-#define PASSED()  {puts(" PASSED"); n_tests_passed_g++; fflush(stdout);}
+/* #define PASSED()  {puts(" PASSED"); n_tests_passed_g++; fflush(stdout);} */
+#define PASSED()  {n_tests_passed_g++;}
 #define H5_FAILED()  {puts("*FAILED*");n_tests_failed_g++;fflush(stdout);}
 #define H5_WARNING()  {puts("*WARNING*");fflush(stdout);}
 #define SKIPPED()  {puts(" -SKIP-");n_tests_skipped_g++;fflush(stdout);}
