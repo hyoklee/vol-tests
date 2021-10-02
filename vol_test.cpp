@@ -60,15 +60,15 @@ size_t n_tests_skipped_g;
 #ifdef H5VL_TEST_HAS_ASYNC
 #define VOL_TESTS                                               \
     X(VOL_TEST_NULL,       "",         NULL,               0)   \
-    X(VOL_TEST_FILE,      "file",      vol_file_test,      1)   \
+    X(VOL_TEST_FILE,      "file",      vol_file_test,      0)   \
     X(VOL_TEST_GROUP,     "group",     vol_group_test,     0)   \
-    X(VOL_TEST_DATASET,   "dataset",   vol_dataset_test,   1)   \
-    X(VOL_TEST_DATATYPE,  "datatype",  vol_datatype_test,  1)   \
-    X(VOL_TEST_ATTRIBUTE, "attribute", vol_attribute_test, 1)   \
-    X(VOL_TEST_LINK,      "link",      vol_link_test,      1)   \
-    X(VOL_TEST_OBJECT,    "object",    vol_object_test,    1)   \
-    X(VOL_TEST_MISC,      "misc",      vol_misc_test,      1)   \
-    X(VOL_TEST_ASYNC,     "async",     vol_async_test,     1)   \
+    X(VOL_TEST_DATASET,   "dataset",   vol_dataset_test,   0)   \
+    X(VOL_TEST_DATATYPE,  "datatype",  vol_datatype_test,  0)   \
+    X(VOL_TEST_ATTRIBUTE, "attribute", vol_attribute_test, 0)   \
+    X(VOL_TEST_LINK,      "link",      vol_link_test,      0)   \
+    X(VOL_TEST_OBJECT,    "object",    vol_object_test,    0)   \
+    X(VOL_TEST_MISC,      "misc",      vol_misc_test,      0)   \
+    X(VOL_TEST_ASYNC,     "async",     vol_async_test,     0)   \
     X(VOL_TEST_MAX,       "",          NULL,               0)
 #else
 #define VOL_TESTS                                               \
@@ -156,14 +156,16 @@ int test(int argc, char **argv)
     HDsnprintf(vol_test_filename, VOL_TEST_FILENAME_MAX_LENGTH, "%s", TEST_FILE_NAME);
 
     if (NULL == (vol_connector_name = HDgetenv("HDF5_VOL_CONNECTOR"))) {
-        HDprintf("No VOL connector selected; using native VOL connector\n");
+        /* HDprintf("No VOL connector selected; using native VOL connector\n"); */
         vol_connector_name = "native";
     }
 
+    /*
     HDprintf("Running VOL tests with VOL connector '%s'\n\n", vol_connector_name);
     HDprintf("Test parameters:\n");
     HDprintf("  - Test file name: '%s'\n", vol_test_filename);
     HDprintf("\n\n");
+    */
 
     /*
      * Create the file that will be used for all of the tests,
@@ -178,16 +180,16 @@ int test(int argc, char **argv)
     /* Run all the tests that are enabled */
     vol_test_run();
 
-    HDprintf("Cleaning up testing files\n");
+    /* HDprintf("Cleaning up testing files\n"); */
     H5Fdelete(vol_test_filename, H5P_DEFAULT);
-
+    /*
     HDprintf("%ld/%ld (%.2f%%) VOL tests passed with VOL connector '%s'\n",
             (long) n_tests_passed_g, (long) n_tests_run_g, ((float) n_tests_passed_g / (float) n_tests_run_g * 100.0), vol_connector_name);
     HDprintf("%ld/%ld (%.2f%%) VOL tests did not pass with VOL connector '%s'\n",
             (long) n_tests_failed_g, (long) n_tests_run_g, ((float) n_tests_failed_g / (float) n_tests_run_g * 100.0), vol_connector_name);
     HDprintf("%ld/%ld (%.2f%%) VOL tests were skipped with VOL connector '%s'\n",
             (long) n_tests_skipped_g, (long) n_tests_run_g, ((float) n_tests_skipped_g / (float) n_tests_run_g * 100.0), vol_connector_name);
-
+    */
 done:
     H5close();
 
