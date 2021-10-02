@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1633138372745,
+  "lastUpdate": 1633138919885,
   "entries": {
     "Catch2 Benchmark": [
       {
@@ -30,6 +30,37 @@ window.BENCHMARK_DATA = {
             "range": "± 0",
             "unit": "ns",
             "extra": "3 samples\n2969 iterations"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "hyoklee@hdfgroup.org",
+            "name": "H. Joe Lee",
+            "username": "hyoklee"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "4382f1c41b872f5bfe5ab24ea8cca22781ca15aa",
+          "message": "Update README.md",
+          "timestamp": "2021-10-01T20:35:47-05:00",
+          "tree_id": "83e6f52359579dcab0e30de3daeb9b68795fbdcd",
+          "url": "https://github.com/hyoklee/vol-tests/commit/4382f1c41b872f5bfe5ab24ea8cca22781ca15aa"
+        },
+        "date": 1633138918519,
+        "tool": "catch2",
+        "benches": [
+          {
+            "name": "vol_test 100",
+            "value": 10,
+            "range": "± 0",
+            "unit": "ns",
+            "extra": "3 samples\n3324 iterations"
           }
         ]
       }
