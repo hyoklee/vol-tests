@@ -73,14 +73,14 @@ size_t n_tests_skipped_g;
 #else
 #define VOL_TESTS                                               \
     X(VOL_TEST_NULL,       "",         NULL,               0)   \
-    X(VOL_TEST_FILE,      "file",      vol_file_test,      1)   \
-    X(VOL_TEST_GROUP,     "group",     vol_group_test,     1)   \
-    X(VOL_TEST_DATASET,   "dataset",   vol_dataset_test,   1)   \
-    X(VOL_TEST_DATATYPE,  "datatype",  vol_datatype_test,  1)   \
-    X(VOL_TEST_ATTRIBUTE, "attribute", vol_attribute_test, 1)   \
-    X(VOL_TEST_LINK,      "link",      vol_link_test,      1)   \
-    X(VOL_TEST_OBJECT,    "object",    vol_object_test,    1)   \
-    X(VOL_TEST_MISC,      "misc",      vol_misc_test,      1)   \
+    X(VOL_TEST_FILE,      "file",      vol_file_test,      0)   \
+    X(VOL_TEST_GROUP,     "group",     vol_group_test,     0)   \
+    X(VOL_TEST_DATASET,   "dataset",   vol_dataset_test,   0)   \
+    X(VOL_TEST_DATATYPE,  "datatype",  vol_datatype_test,  0)   \
+    X(VOL_TEST_ATTRIBUTE, "attribute", vol_attribute_test, 0)   \
+    X(VOL_TEST_LINK,      "link",      vol_link_test,      0)   \
+    X(VOL_TEST_OBJECT,    "object",    vol_object_test,    0)   \
+    X(VOL_TEST_MISC,      "misc",      vol_misc_test,      0)   \
     X(VOL_TEST_MAX,       "",          NULL,               0)
 #endif
 
