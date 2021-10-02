@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1633138919885,
+  "lastUpdate": 1633139369977,
   "entries": {
     "Catch2 Benchmark": [
       {
@@ -61,6 +61,37 @@ window.BENCHMARK_DATA = {
             "range": "± 0",
             "unit": "ns",
             "extra": "3 samples\n3324 iterations"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "hyoklee@hdfgroup.org",
+            "name": "H. Joe Lee",
+            "username": "hyoklee"
+          },
+          "committer": {
+            "email": "hyoklee@hdfgroup.org",
+            "name": "H. Joe Lee",
+            "username": "hyoklee"
+          },
+          "distinct": true,
+          "id": "2523562d8431736d44b9783656402c488c02cc47",
+          "message": "OESS-156: suppress HDprint.",
+          "timestamp": "2021-10-01T20:44:00-05:00",
+          "tree_id": "d4f27817d546cafb355bcb5f78e7fe3e3ae4ad86",
+          "url": "https://github.com/hyoklee/vol-tests/commit/2523562d8431736d44b9783656402c488c02cc47"
+        },
+        "date": 1633139368265,
+        "tool": "catch2",
+        "benches": [
+          {
+            "name": "vol_test 100",
+            "value": 1.019,
+            "range": "± 291.332",
+            "unit": "ms",
+            "extra": "3 samples\n1 iterations"
           }
         ]
       }
