@@ -225,14 +225,8 @@ foreach(vol_test ${vol_tests})
   endif()
 endforeach()
 
-# add_executable(c2_vol_test ${HDF5_VOL_TEST_SRCS} vol_test.cpp vol_test_util.c)
-# target_include_directories(c2_vol_test
-#   SYSTEM PUBLIC ${HDF5_VOL_TEST_EXT_INCLUDE_DEPENDENCIES}
-# )
-
 # add_library(vol_lib ${HDF5_VOL_TEST_SRCS} vol_test_util.c)
 add_executable(h5vl_test ${HDF5_VOL_TEST_SRCS} vol_test_util.c vol_test.cpp )
-# add_executable(h5vl_test vol_test.cpp )
 if(HDF5_VOL_TEST_ENABLE_PARALLEL)
   add_executable(h5vl_test_parallel
     ${HDF5_VOL_TEST_PARALLEL_SRCS} vol_test_parallel.c vol_test_util.c)
@@ -467,3 +461,4 @@ else()
     endforeach()
   endif()
 endif()
+install(TARGETS h5vl_test RUNTIME DESTINATION bin/)

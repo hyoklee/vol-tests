@@ -61,7 +61,7 @@ size_t n_tests_skipped_g;
 #define VOL_TESTS                                               \
     X(VOL_TEST_NULL,       "",         NULL,               0)   \
     X(VOL_TEST_FILE,      "file",      vol_file_test,      1)   \
-    X(VOL_TEST_GROUP,     "group",     vol_group_test,     1)   \
+    X(VOL_TEST_GROUP,     "group",     vol_group_test,     0)   \
     X(VOL_TEST_DATASET,   "dataset",   vol_dataset_test,   1)   \
     X(VOL_TEST_DATATYPE,  "datatype",  vol_datatype_test,  1)   \
     X(VOL_TEST_ATTRIBUTE, "attribute", vol_attribute_test, 1)   \
@@ -201,6 +201,6 @@ done:
 TEST_CASE("vol_test") {
   // now let's benchmark:
   BENCHMARK("vol_test 100") {
-    test(0, NULL);
+    vol_test_run();
   };
 }
