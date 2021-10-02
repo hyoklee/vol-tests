@@ -2744,6 +2744,7 @@ static void
 cleanup_files(void)
 {
     H5Fdelete(FILE_CREATE_TEST_FILENAME, H5P_DEFAULT);
+#if 0
     H5Fdelete(FILE_CREATE_EXCL_FILE_NAME, H5P_DEFAULT);
 
     /* The below file should not get created */
@@ -2763,7 +2764,7 @@ cleanup_files(void)
     H5Fdelete(FILE_MOUNT_TEST_FILENAME, H5P_DEFAULT);
 #endif
     H5Fdelete(GET_FILE_NAME_TEST_FNAME, H5P_DEFAULT);
-#if 0 /* for native VOL connector test only */
+ /* for native VOL connector test only */
     HDremove(FILESPACE_INFO_FILENAME);
     HDremove(FILE_GET_ID_TEST_FILENAME);
     HDremove(FILE_CLOSE_DEGREE_FILENAME);
