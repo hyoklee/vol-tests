@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1633139369977,
+  "lastUpdate": 1633143096297,
   "entries": {
     "Catch2 Benchmark": [
       {
@@ -91,6 +91,37 @@ window.BENCHMARK_DATA = {
             "value": 1.019,
             "range": "± 291.332",
             "unit": "ms",
+            "extra": "3 samples\n1 iterations"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "hyoklee@hdfgroup.org",
+            "name": "H. Joe Lee",
+            "username": "hyoklee"
+          },
+          "committer": {
+            "email": "hyoklee@hdfgroup.org",
+            "name": "H. Joe Lee",
+            "username": "hyoklee"
+          },
+          "distinct": true,
+          "id": "189af19f3d6aa1ac4d653f3c340a371561261b15",
+          "message": "OESS-156: adjust removing files.",
+          "timestamp": "2021-10-01T21:43:35-05:00",
+          "tree_id": "dc9564adf0d891b55d1de236a6b6255417662d24",
+          "url": "https://github.com/hyoklee/vol-tests/commit/189af19f3d6aa1ac4d653f3c340a371561261b15"
+        },
+        "date": 1633143094815,
+        "tool": "catch2",
+        "benches": [
+          {
+            "name": "vol_test 100",
+            "value": 300.467,
+            "range": "± 146.235",
+            "unit": "us",
             "extra": "3 samples\n1 iterations"
           }
         ]
