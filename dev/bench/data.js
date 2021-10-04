@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1633373984989,
+  "lastUpdate": 1633374963629,
   "entries": {
     "Catch2 Benchmark": [
       {
@@ -245,6 +245,37 @@ window.BENCHMARK_DATA = {
             "name": "vol_test 100",
             "value": 317.727,
             "range": "± 167.484",
+            "unit": "us",
+            "extra": "3 samples\n1 iterations"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "hyoklee@hdfgroup.org",
+            "name": "Hyo-Kyung Lee",
+            "username": "hyoklee"
+          },
+          "committer": {
+            "email": "hyoklee@hdfgroup.org",
+            "name": "Hyo-Kyung Lee",
+            "username": "hyoklee"
+          },
+          "distinct": true,
+          "id": "d8e3fc43c43566dbc5564fe48e846c918f75ce6f",
+          "message": "OESS-156: enable alert.",
+          "timestamp": "2021-10-04T14:09:48-05:00",
+          "tree_id": "d01fac270e1e013b5fc769922e4de65836a7d75c",
+          "url": "https://github.com/hyoklee/vol-tests/commit/d8e3fc43c43566dbc5564fe48e846c918f75ce6f"
+        },
+        "date": 1633374960892,
+        "tool": "catch2",
+        "benches": [
+          {
+            "name": "vol_test 100",
+            "value": 195.97,
+            "range": "± 81.321",
             "unit": "us",
             "extra": "3 samples\n1 iterations"
           }
