@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1633143096297,
+  "lastUpdate": 1633368673637,
   "entries": {
     "Catch2 Benchmark": [
       {
@@ -121,6 +121,37 @@ window.BENCHMARK_DATA = {
             "name": "vol_test 100",
             "value": 300.467,
             "range": "± 146.235",
+            "unit": "us",
+            "extra": "3 samples\n1 iterations"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "hyoklee@hdfgroup.org",
+            "name": "Hyo-Kyung Lee",
+            "username": "hyoklee"
+          },
+          "committer": {
+            "email": "hyoklee@hdfgroup.org",
+            "name": "Hyo-Kyung Lee",
+            "username": "hyoklee"
+          },
+          "distinct": true,
+          "id": "e8a6dacad86df44524518a021580f74d1bc4208d",
+          "message": "OESS-156: added an event trigger from HDF5 repo.",
+          "timestamp": "2021-10-04T12:24:44-05:00",
+          "tree_id": "5953820064707e7a9d4a6d8b1b35f22ab2b374e6",
+          "url": "https://github.com/hyoklee/vol-tests/commit/e8a6dacad86df44524518a021580f74d1bc4208d"
+        },
+        "date": 1633368671662,
+        "tool": "catch2",
+        "benches": [
+          {
+            "name": "vol_test 100",
+            "value": 258.142,
+            "range": "± 101.196",
             "unit": "us",
             "extra": "3 samples\n1 iterations"
           }
