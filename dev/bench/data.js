@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1633369718864,
+  "lastUpdate": 1633372744997,
   "entries": {
     "Catch2 Benchmark": [
       {
@@ -183,6 +183,37 @@ window.BENCHMARK_DATA = {
             "name": "vol_test 100",
             "value": 177.542,
             "range": "± 79.828",
+            "unit": "us",
+            "extra": "3 samples\n1 iterations"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "hyoklee@hdfgroup.org",
+            "name": "Hyo-Kyung Lee",
+            "username": "hyoklee"
+          },
+          "committer": {
+            "email": "hyoklee@hdfgroup.org",
+            "name": "Hyo-Kyung Lee",
+            "username": "hyoklee"
+          },
+          "distinct": true,
+          "id": "2327ed75f84d91b9b3f0eaf6f3cea31c2b2c112c",
+          "message": "OESS-156: updated branch name in Actions.",
+          "timestamp": "2021-10-04T13:32:25-05:00",
+          "tree_id": "e94e0baa2506232b38dea3df1a8e1d4f8eb8ff80",
+          "url": "https://github.com/hyoklee/vol-tests/commit/2327ed75f84d91b9b3f0eaf6f3cea31c2b2c112c"
+        },
+        "date": 1633372743355,
+        "tool": "catch2",
+        "benches": [
+          {
+            "name": "vol_test 100",
+            "value": 257.97,
+            "range": "± 122.748",
             "unit": "us",
             "extra": "3 samples\n1 iterations"
           }
