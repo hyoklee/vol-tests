@@ -2,7 +2,7 @@ name: Test HDF5 external pass-through VOL
 
 on:
   push:
-    branches: [ develop ]
+    branches: [ master ]
   workflow_dispatch:
 jobs:
   build:
