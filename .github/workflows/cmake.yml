@@ -53,13 +53,12 @@ jobs:
       uses: hyoklee/github-action-benchmark@v1
       with:
         name: Catch2 Benchmark
-        tool: "catch2"
+        tool: 'catch2'
         output-file-path: ${{ runner.workspace }}/vol-tests/output.txt
         github-token: ${{ secrets.GITHUB_TOKEN }}
         skip-fetch-gh-pages: false
         auto-push: true
-        alert-threshold: "100%"
-        comment-on-alert: false
-        fail-on-alert: false
-        alert-comment-cc-users: "@hyoklee"         
-
+        alert-threshold: '1%'
+        comment-on-alert: true
+        fail-on-alert: true
+        alert-comment-cc-users: '@hyoklee'         
