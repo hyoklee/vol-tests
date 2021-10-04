@@ -1,4 +1,13 @@
+[![Test HDF5 develop branch](https://github.com/hyoklee/vol-tests/actions/workflows/cmake.yml/badge.svg)](https://github.com/hyoklee/vol-tests/actions/workflows/cmake.yml)
+[![Test HDF5 async VOL](https://github.com/hyoklee/vol-tests/actions/workflows/async.yml/badge.svg)](https://github.com/hyoklee/vol-tests/actions/workflows/async.yml)
+[![Test HDF5 cache VOL](https://github.com/hyoklee/vol-tests/actions/workflows/cache.yml/badge.svg)](https://github.com/hyoklee/vol-tests/actions/workflows/cache.yml)
+[![Test HDF5 external pass-through VOL](https://github.com/hyoklee/vol-tests/actions/workflows/pass.yml/badge.svg)](https://github.com/hyoklee/vol-tests/actions/workflows/pass.yml)
+[![Test HDF5 ADIOS2 VOL](https://github.com/hyoklee/vol-tests/actions/workflows/adios2.yml/badge.svg)](https://github.com/hyoklee/vol-tests/actions/workflows/adios2.yml)
+[![Test HDF5 Log-based VOL](https://github.com/hyoklee/vol-tests/actions/workflows/log.yml/badge.svg)](https://github.com/hyoklee/vol-tests/actions/workflows/log.yml)
+[![Test HDF5 REST VOL](https://github.com/hyoklee/vol-tests/actions/workflows/rest.yml/badge.svg)](https://github.com/hyoklee/vol-tests/actions/workflows/rest.yml)
 # HDF5 VOL Tests
+
+See https://hyoklee.github.io/vol-tests/dev/bench/ for benchmark performance.
 
 This repository contains several test applications that exercise [HDF5](https://github.com/HDFGroup/hdf5)'s
 public API and serve as regression tests for HDF5 [VOL Connectors](https://portal.hdfgroup.org/display/HDF5/Virtual+Object+Layer).
@@ -102,3 +111,4 @@ the native HDF5 VOL connector and an error similar to the following will appear 
 ### Help and Support
 
 For help with building or using the HDF5 VOL tests, please contact the [HDF Help Desk](https://portal.hdfgroup.org/display/support/The+HDF+Help+Desk).
+

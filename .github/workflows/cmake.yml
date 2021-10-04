@@ -4,7 +4,7 @@ name: Test HDF5 develop branch
 on:
   # Triggers the workflow on push or pull request events for the develop branch
   push:
-    branches: [ master ]
+    branches: [ develop ]
   # Allows you to run this workflow manually from the Actions tab    
   workflow_dispatch:
 jobs:
@@ -40,14 +40,27 @@ jobs:
         cd build
         cmake .. -DHDF5_DIR=/usr/local
         make
-        ctest
+        # ctest
         pwd
-        ls
-        ./bin/h5vl_test | tee ../output.txt
-        
+        ls ./bin
+        ./bin/h5vl_test --benchmark-samples 3 | tee ../output.txt     
     - name: Upload
       uses: actions/upload-artifact@v2
       with:
-        name: output.txt
+        name: git.txt
         path: ${{ runner.workspace }}/vol-tests/output.txt
+
+    - name: Store benchmark result
+      uses: hyoklee/github-action-benchmark@v1
+      with:
+        name: Catch2 Benchmark
+        tool: "catch2"
+        output-file-path: ${{ runner.workspace }}/vol-tests/output.txt
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        skip-fetch-gh-pages: false
+        auto-push: true
+        alert-threshold: "100%"
+        comment-on-alert: false
+        fail-on-alert: false
+        alert-comment-cc-users: "@hyoklee"         
 

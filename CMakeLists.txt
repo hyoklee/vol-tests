@@ -1,6 +1,7 @@
 # cmake_minimum_required(VERSION 2.8.12.2 FATAL_ERROR)
 cmake_minimum_required(VERSION 3.12)
-project(HDF5_VOL_TEST C)
+# project(HDF5_VOL_TEST C)
+project(HDF5_VOL_TEST)
 
 #------------------------------------------------------------------------------
 # Setup install and output Directories
@@ -15,6 +16,20 @@ project(HDF5_VOL_TEST C)
 #if(NOT CMAKE_INSTALL_RPATH_USE_LINK_PATH)
 #  set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 #endif()
+
+include(FetchContent)
+FetchContent_Declare(
+  catch2
+  GIT_REPOSITORY https://github.com/catchorg/Catch2.git
+  GIT_TAG v2.11.0)
+
+FetchContent_GetProperties(catch2)
+if(NOT catch2_POPULATED)
+  FetchContent_Populate(catch2)
+  add_subdirectory(${catch2_SOURCE_DIR} ${catch2_BINARY_DIR})
+endif()
+
+find_package(Threads)
 
 #------------------------------------------------------------------------------
 # Set module path
@@ -93,7 +108,7 @@ include_directories(
 # External dependencies
 #------------------------------------------------------------------------------
 # HDF5
-# find_package(HDF5 NO_MODULE NAMES hdf5 COMPONENTS C shared)
+find_package(HDF5 NO_MODULE NAMES hdf5 COMPONENTS C shared)
 if(HDF5_FOUND)
   set(HDF5_C_SHARED_LIBRARY hdf5-shared)
   if(NOT TARGET ${HDF5_C_SHARED_LIBRARY})
@@ -210,7 +225,8 @@ foreach(vol_test ${vol_tests})
   endif()
 endforeach()
 
-add_executable(h5vl_test ${HDF5_VOL_TEST_SRCS} vol_test.c vol_test_util.c)
+# add_library(vol_lib ${HDF5_VOL_TEST_SRCS} vol_test_util.c)
+add_executable(h5vl_test ${HDF5_VOL_TEST_SRCS} vol_test_util.c vol_test.cpp )
 if(HDF5_VOL_TEST_ENABLE_PARALLEL)
   add_executable(h5vl_test_parallel
     ${HDF5_VOL_TEST_PARALLEL_SRCS} vol_test_parallel.c vol_test_util.c)
@@ -220,17 +236,28 @@ endif()
 #  )
 target_include_directories(h5vl_test
   SYSTEM PUBLIC ${HDF5_VOL_TEST_EXT_INCLUDE_DEPENDENCIES}
+#  PUBLIC ${HDF5_VOL_TEST_EXT_INCLUDE_DEPENDENCIES}
 )
+target_compile_options(
+  h5vl_test
+  PRIVATE
+    $<$<CXX_COMPILER_ID:MSVC>:/DCATCH_CONFIG_ENABLE_BENCHMARKING>
+    $<$<OR:$<CXX_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>>:-DCATCH_CONFIG_ENABLE_BENCHMARKING>
+)
+
 if(HDF5_VOL_TEST_ENABLE_PARALLEL)
   target_include_directories(h5vl_test_parallel
     SYSTEM PUBLIC ${HDF5_VOL_TEST_EXT_INCLUDE_DEPENDENCIES}
   )
 endif()
+
 target_link_libraries(h5vl_test
   ${HDF5_VOL_TEST_EXPORTED_LIBS}
   ${HDF5_VOL_TEST_EXT_LIB_DEPENDENCIES}
   ${HDF5_VOL_TEST_EXT_PKG_DEPENDENCIES}
+  Catch2::Catch2
 )
+
 if(HDF5_VOL_TEST_ENABLE_PARALLEL)
   target_link_libraries(h5vl_test_parallel
     ${HDF5_VOL_TEST_EXPORTED_LIBS}
@@ -277,7 +304,6 @@ foreach(hdf5_test ${hdf5_tests})
     ${HDF5_VOL_TEST_EXT_LIB_DEPENDENCIES}
     ${HDF5_VOL_TEST_EXT_PKG_DEPENDENCIES}
   )
-  
 endforeach()
 
 # Parallel tests
@@ -435,3 +461,4 @@ else()
     endforeach()
   endif()
 endif()
+install(TARGETS h5vl_test RUNTIME DESTINATION bin/)

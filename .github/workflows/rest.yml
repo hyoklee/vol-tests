@@ -1,0 +1,31 @@
+name: Test HDF5 REST VOL
+
+on:
+  push:
+    branches: [ develop ]
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout vol-tests
+      uses: actions/checkout@v2
+    - name: Checkout REST VOL
+      uses: actions/checkout@v2
+      with:
+        repository: hyoklee/vol-rest
+        ref: hdf5_1_12_update
+        path: vol-rest
+        submodules: recursive
+    - name: Install dependencies
+      run: |
+        sudo apt-get install ninja-build automake autoconf libtool libtool-bin libopenmpi-dev
+        sudo apt-get update -y	
+        sudo apt-get install -y libyajl-dev libcurl4-openssl-dev
+    - name: Install REST VOL
+      run: |
+        mkdir vol-rest/build
+        cd vol-rest/build
+        cmake ..
+        make
+        ctest

@@ -45,7 +45,8 @@ static int test_double_group_open(void);
  * The array of file tests to be performed.
  */
 static int (*file_tests[])(void) = {
-        test_create_file,
+        test_create_file
+#if 0
         test_create_file_invalid_params,
         test_create_file_excl,
         test_open_file,
@@ -62,7 +63,7 @@ static int (*file_tests[])(void) = {
         test_get_file_obj_count,
         test_file_mounts,
         test_get_file_name,
-#if 0 /* for native VOL connector test only */
+	/* for native VOL connector test only */
         test_filespace_info,
         test_get_file_id,
         test_file_close_degree,
@@ -2743,6 +2744,7 @@ static void
 cleanup_files(void)
 {
     H5Fdelete(FILE_CREATE_TEST_FILENAME, H5P_DEFAULT);
+#if 0
     H5Fdelete(FILE_CREATE_EXCL_FILE_NAME, H5P_DEFAULT);
 
     /* The below file should not get created */
@@ -2762,7 +2764,7 @@ cleanup_files(void)
     H5Fdelete(FILE_MOUNT_TEST_FILENAME, H5P_DEFAULT);
 #endif
     H5Fdelete(GET_FILE_NAME_TEST_FNAME, H5P_DEFAULT);
-#if 0 /* for native VOL connector test only */
+ /* for native VOL connector test only */
     HDremove(FILESPACE_INFO_FILENAME);
     HDremove(FILE_GET_ID_TEST_FILENAME);
     HDremove(FILE_CLOSE_DEGREE_FILENAME);
@@ -2778,20 +2780,21 @@ vol_file_test(void)
 {
     size_t i;
     int    nerrors;
-
+#if 0
     HDprintf("**********************************************\n");
     HDprintf("*                                            *\n");
     HDprintf("*               VOL File Tests               *\n");
     HDprintf("*                                            *\n");
     HDprintf("**********************************************\n\n");
-
+#endif
     for (i = 0, nerrors = 0; i < ARRAY_LENGTH(file_tests); i++) {
         nerrors += (*file_tests[i])() ? 1 : 0;
     }
-
+#if 0
     HDprintf("\n");
 
     HDprintf("Cleaning up testing files\n");
+#endif
     cleanup_files();
 
     return nerrors;
