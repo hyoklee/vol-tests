@@ -41,7 +41,9 @@ jobs:
         autoreconf -i
         ./configure --prefix=/usr/local --with-hdf5=/usr/local --enable-shared --enable-zlib
         make -j2
-        sudo make -j2 install        
+        sudo make -j2 install
+        export HDF5_PLUGIN_PATH=/usr/local/lib        
+        export HDF5_VOL_CONNECTOR="LOG under_vol=0;under_info={}"        
         make check
     - name: Test performance
       env:
