@@ -21,7 +21,7 @@ jobs:
         repository: DataLib-ECP/vol-log-based
         path: vol-log-based
     - name: Install dependencies
-      run: sudo apt-get install ninja-build automake autoconf libtool libtool-bin libopenmpi-dev
+      run: sudo apt-get install ninja-build automake autoconf libtool libtool-bin mpich zlib1g-dev 
     - name: Install HDF5
       run: |
         mkdir hdf5/build
