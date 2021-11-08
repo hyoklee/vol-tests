@@ -24,11 +24,14 @@ jobs:
       run: sudo apt-get install ninja-build automake autoconf libtool libtool-bin mpich zlib1g-dev 
     - name: Install HDF5
       run: |
-        mkdir hdf5/build
-        cd hdf5/build
-        cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local -DHDF5_ENABLE_PARALLEL:BOOL=ON -DHDF5_ENABLE_THREADSAFE:BOOL=ON -DALLOW_UNSUPPORTED:BOOL=ON ..        
-        sudo make -j2 install
-        cd ..
+        # mkdir hdf5/build
+        # cd hdf5/build
+        # cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local -DHDF5_ENABLE_PARALLEL:BOOL=ON ..
+        cd hdf5
+        export HDF5_LIBTOOL=/usr/bin/libtoolize
+        ./autogen.sh
+        ./configure --prefix=/usr/local --enable-parallel CC=mpicc
+        make -j2 && sudo make -j2 install
         git rev-parse HEAD > git.txt
     - name: Install Log-based VOL
       env:
