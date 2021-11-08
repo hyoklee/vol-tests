@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1636410991954,
+  "lastUpdate": 1636413176309,
   "entries": {
     "Catch2 Benchmark": [
       {
@@ -1332,6 +1332,37 @@ window.BENCHMARK_DATA = {
             "range": "± 1",
             "unit": "ns",
             "extra": "100 samples\n2885 iterations"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "hyoklee@hdfgroup.org",
+            "name": "Hyo-Kyung Lee",
+            "username": "hyoklee"
+          },
+          "committer": {
+            "email": "hyoklee@hdfgroup.org",
+            "name": "Hyo-Kyung Lee",
+            "username": "hyoklee"
+          },
+          "distinct": true,
+          "id": "834f411c2f4ceed1e38f3107b42c2fa17dca2004",
+          "message": "OESS-205: Change HDF5 installation from CMake to Autotools.",
+          "timestamp": "2021-11-08T17:06:35-06:00",
+          "tree_id": "ba9adb03261b6bd2a4c3561b7f79a013720cbe7f",
+          "url": "https://github.com/hyoklee/vol-tests/commit/834f411c2f4ceed1e38f3107b42c2fa17dca2004"
+        },
+        "date": 1636413174906,
+        "tool": "catch2",
+        "benches": [
+          {
+            "name": "vol_test 100",
+            "value": 225.273,
+            "range": "± 78.915",
+            "unit": "us",
+            "extra": "3 samples\n1 iterations"
           }
         ]
       }
