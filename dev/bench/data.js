@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1636408197842,
+  "lastUpdate": 1636409013902,
   "entries": {
     "Catch2 Benchmark": [
       {
@@ -1115,6 +1115,37 @@ window.BENCHMARK_DATA = {
             "range": "± 0",
             "unit": "ns",
             "extra": "100 samples\n3781 iterations"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "hyoklee@hdfgroup.org",
+            "name": "Hyo-Kyung Lee",
+            "username": "hyoklee"
+          },
+          "committer": {
+            "email": "hyoklee@hdfgroup.org",
+            "name": "Hyo-Kyung Lee",
+            "username": "hyoklee"
+          },
+          "distinct": true,
+          "id": "14b54b071da1eae430b6e572c0fa036206b029ee",
+          "message": "OESS-205: Add environment variables for Log VOL.",
+          "timestamp": "2021-11-08T15:57:23-06:00",
+          "tree_id": "0d717a53858166d7627c89484105fe3d7a48917e",
+          "url": "https://github.com/hyoklee/vol-tests/commit/14b54b071da1eae430b6e572c0fa036206b029ee"
+        },
+        "date": 1636409012397,
+        "tool": "catch2",
+        "benches": [
+          {
+            "name": "vol_test 100",
+            "value": 284.5,
+            "range": "± 129.022",
+            "unit": "us",
+            "extra": "3 samples\n1 iterations"
           }
         ]
       }
