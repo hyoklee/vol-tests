@@ -35,7 +35,7 @@ jobs:
         CXX: mpic++
         CC: mpicc
         HDF5_PLUGIN_PATH: /usr/local/lib
-        HDF5_VOL_CONNECTOR: LOG under_vol=0;under_info={}
+        HDF5_VOL_CONNECTOR: LOG under_vol=0\;under_info={}
       run: |
         cd vol-log-based
         autoreconf -i
@@ -46,7 +46,7 @@ jobs:
     - name: Test performance
       env:
         HDF5_PLUGIN_PATH: /usr/local/lib
-        HDF5_VOL_CONNECTOR: LOG under_vol=0;under_info={}
+        HDF5_VOL_CONNECTOR: LOG under_vol=0\;under_info={}
       run: |
         mkdir build
         cd build
