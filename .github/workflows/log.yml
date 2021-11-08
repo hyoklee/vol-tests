@@ -34,13 +34,15 @@ jobs:
       env:
         CXX: mpic++
         CC: mpicc
+        HDF5_PLUGIN_PATH: /usr/local/lib
+        HDF5_VOL_CONNECTOR: LOG under_vol=0;under_info={}
       run: |
         cd vol-log-based
         autoreconf -i
         ./configure --prefix=/usr/local --with-hdf5=/usr/local --enable-shared --enable-zlib
         make -j2
+        make -j2 install        
         make check
-        make install
     - name: Test performance
       env:
         HDF5_PLUGIN_PATH: /usr/local/lib
