@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1636409134867,
+  "lastUpdate": 1636409499105,
   "entries": {
     "Catch2 Benchmark": [
       {
@@ -1177,6 +1177,37 @@ window.BENCHMARK_DATA = {
             "range": "± 1",
             "unit": "ns",
             "extra": "100 samples\n3928 iterations"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "hyoklee@hdfgroup.org",
+            "name": "Hyo-Kyung Lee",
+            "username": "hyoklee"
+          },
+          "committer": {
+            "email": "hyoklee@hdfgroup.org",
+            "name": "Hyo-Kyung Lee",
+            "username": "hyoklee"
+          },
+          "distinct": true,
+          "id": "a8a5541e291d0d53a4a6343cef14f19b8a5cebb3",
+          "message": "OESS-205: Add sudo for Log VOL installation.",
+          "timestamp": "2021-11-08T16:04:53-06:00",
+          "tree_id": "3fba12f0f05044e300b5d40a742c76d087048cc6",
+          "url": "https://github.com/hyoklee/vol-tests/commit/a8a5541e291d0d53a4a6343cef14f19b8a5cebb3"
+        },
+        "date": 1636409497280,
+        "tool": "catch2",
+        "benches": [
+          {
+            "name": "vol_test 100",
+            "value": 296.556,
+            "range": "± 163.351",
+            "unit": "us",
+            "extra": "3 samples\n1 iterations"
           }
         ]
       }
