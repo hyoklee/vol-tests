@@ -78,7 +78,7 @@ jobs:
         pwd
         ls
         ./bin/h5vl_test | tee ../output.txt
-        
+        sed -i 's/vol_test/async/g' ../output.txt
     - name: Upload
       uses: actions/upload-artifact@v2
       with:
