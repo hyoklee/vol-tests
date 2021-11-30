@@ -676,7 +676,7 @@ window.BENCHMARK_DATA = {
         "tool": "catch2",
         "benches": [
           {
-            "name": "vol_test 100",
+            "name": "async 100",
             "value": 11,
             "range": "± 4",
             "unit": "ns",
@@ -738,7 +738,7 @@ window.BENCHMARK_DATA = {
         "tool": "catch2",
         "benches": [
           {
-            "name": "vol_test 100",
+            "name": "async 100",
             "value": 6,
             "range": "± 0",
             "unit": "ns",
