@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1637030495544,
+  "lastUpdate": 1638295362072,
   "entries": {
     "Catch2 Benchmark": [
       {
@@ -1580,6 +1580,37 @@ window.BENCHMARK_DATA = {
             "range": "± 0",
             "unit": "ns",
             "extra": "100 samples\n3653 iterations"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "hyoklee@hdfgroup.org",
+            "name": "Hyo-Kyung Lee",
+            "username": "hyoklee"
+          },
+          "committer": {
+            "email": "hyoklee@hdfgroup.org",
+            "name": "Hyo-Kyung Lee",
+            "username": "hyoklee"
+          },
+          "distinct": true,
+          "id": "995b15bbc9573d7684334af6d90abe552be0dd4e",
+          "message": "OESS-179: Replace test name for async.",
+          "timestamp": "2021-11-30T11:56:33-06:00",
+          "tree_id": "845675f6a293f0db3f476bf3f70c07b8c513ab1f",
+          "url": "https://github.com/hyoklee/vol-tests/commit/995b15bbc9573d7684334af6d90abe552be0dd4e"
+        },
+        "date": 1638295360130,
+        "tool": "catch2",
+        "benches": [
+          {
+            "name": "vol_test 100",
+            "value": 191.403,
+            "range": "± 77.542",
+            "unit": "us",
+            "extra": "3 samples\n1 iterations"
           }
         ]
       }
