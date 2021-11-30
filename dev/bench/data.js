@@ -800,7 +800,7 @@ window.BENCHMARK_DATA = {
         "tool": "catch2",
         "benches": [
           {
-            "name": "vol_test 100",
+            "name": "async 100",
             "value": 10,
             "range": "± 3",
             "unit": "ns",
@@ -862,7 +862,7 @@ window.BENCHMARK_DATA = {
         "tool": "catch2",
         "benches": [
           {
-            "name": "vol_test 100",
+            "name": "async 100",
             "value": 9,
             "range": "± 0",
             "unit": "ns",
@@ -924,7 +924,7 @@ window.BENCHMARK_DATA = {
         "tool": "catch2",
         "benches": [
           {
-            "name": "vol_test 100",
+            "name": "async 100",
             "value": 8,
             "range": "± 0",
             "unit": "ns",
@@ -955,7 +955,7 @@ window.BENCHMARK_DATA = {
         "tool": "catch2",
         "benches": [
           {
-            "name": "vol_test 100",
+            "name": "async 100",
             "value": 14,
             "range": "± 32",
             "unit": "ns",
@@ -1048,7 +1048,7 @@ window.BENCHMARK_DATA = {
         "tool": "catch2",
         "benches": [
           {
-            "name": "vol_test 100",
+            "name": "async 100",
             "value": 11,
             "range": "± 4",
             "unit": "ns",
@@ -1110,7 +1110,7 @@ window.BENCHMARK_DATA = {
         "tool": "catch2",
         "benches": [
           {
-            "name": "vol_test 100",
+            "name": "async 100",
             "value": 6,
             "range": "± 0",
             "unit": "ns",
@@ -1172,7 +1172,7 @@ window.BENCHMARK_DATA = {
         "tool": "catch2",
         "benches": [
           {
-            "name": "vol_test 100",
+            "name": "async 100",
             "value": 9,
             "range": "± 1",
             "unit": "ns",
@@ -1265,7 +1265,7 @@ window.BENCHMARK_DATA = {
         "tool": "catch2",
         "benches": [
           {
-            "name": "vol_test 100",
+            "name": "async 100",
             "value": 8,
             "range": "± 0",
             "unit": "ns",
@@ -1327,7 +1327,7 @@ window.BENCHMARK_DATA = {
         "tool": "catch2",
         "benches": [
           {
-            "name": "vol_test 100",
+            "name": "async 100",
             "value": 8,
             "range": "± 1",
             "unit": "ns",
@@ -1389,7 +1389,7 @@ window.BENCHMARK_DATA = {
         "tool": "catch2",
         "benches": [
           {
-            "name": "vol_test 100",
+            "name": "async 100",
             "value": 9,
             "range": "± 0",
             "unit": "ns",
@@ -1451,7 +1451,7 @@ window.BENCHMARK_DATA = {
         "tool": "catch2",
         "benches": [
           {
-            "name": "vol_test 100",
+            "name": "async 100",
             "value": 9,
             "range": "± 2",
             "unit": "ns",
@@ -1513,7 +1513,7 @@ window.BENCHMARK_DATA = {
         "tool": "catch2",
         "benches": [
           {
-            "name": "vol_test 100",
+            "name": "async 100",
             "value": 9,
             "range": "± 2",
             "unit": "ns",
@@ -1575,7 +1575,7 @@ window.BENCHMARK_DATA = {
         "tool": "catch2",
         "benches": [
           {
-            "name": "vol_test 100",
+            "name": "async 100",
             "value": 8,
             "range": "± 0",
             "unit": "ns",
