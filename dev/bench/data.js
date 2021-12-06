@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1638755814237,
+  "lastUpdate": 1638755930483,
   "entries": {
     "Catch2 Benchmark": [
       {
@@ -2014,6 +2014,37 @@ window.BENCHMARK_DATA = {
             "range": "± 89.849",
             "unit": "us",
             "extra": "3 samples\n1 iterations"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "hyoklee@hdfgroup.org",
+            "name": "H. Joe Lee",
+            "username": "hyoklee"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "cd6f139cd3ee1688749179f7b66afee6c20edd26",
+          "message": "Delete cmake_1.12.1.yml",
+          "timestamp": "2021-12-05T19:51:39-06:00",
+          "tree_id": "8f018528c6be21ea368b29714a18ffbfba95e2a9",
+          "url": "https://github.com/hyoklee/vol-tests/commit/cd6f139cd3ee1688749179f7b66afee6c20edd26"
+        },
+        "date": 1638755928905,
+        "tool": "catch2",
+        "benches": [
+          {
+            "name": "async 100",
+            "value": 8,
+            "range": "± 1",
+            "unit": "ns",
+            "extra": "100 samples\n2533 iterations"
           }
         ]
       }
