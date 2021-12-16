@@ -58,7 +58,7 @@ jobs:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         skip-fetch-gh-pages: false
         auto-push: true
-        alert-threshold: '1%'
+        alert-threshold: '20%'
         comment-on-alert: true
         fail-on-alert: true
         alert-comment-cc-users: '@hyoklee'         
