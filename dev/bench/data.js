@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1639626680570,
+  "lastUpdate": 1639627032837,
   "entries": {
     "Catch2 Benchmark": [
       {
@@ -4277,6 +4277,37 @@ window.BENCHMARK_DATA = {
             "range": "± 0",
             "unit": "ns",
             "extra": "100 samples\n2752 iterations"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "hyoklee@hdfgroup.org",
+            "name": "H. Joe Lee",
+            "username": "hyoklee"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "8495d3cf40edca16ed357cf57007980d82caa072",
+          "message": "Increase alert threshold.",
+          "timestamp": "2021-12-15T21:51:01-06:00",
+          "tree_id": "a537cee22ad46c1f17362f1036ce53eca951fb25",
+          "url": "https://github.com/hyoklee/vol-tests/commit/8495d3cf40edca16ed357cf57007980d82caa072"
+        },
+        "date": 1639627031376,
+        "tool": "catch2",
+        "benches": [
+          {
+            "name": "vol_test 100",
+            "value": 219.878,
+            "range": "± 88.994",
+            "unit": "us",
+            "extra": "3 samples\n1 iterations"
           }
         ]
       }
