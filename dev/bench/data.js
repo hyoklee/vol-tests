@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1660334405414,
+  "lastUpdate": 1661271644737,
   "entries": {
     "Catch2 Benchmark": [
       {
@@ -6383,6 +6383,37 @@ window.BENCHMARK_DATA = {
             "name": "vol_test 100",
             "value": 379.438,
             "range": "± 120.28",
+            "unit": "us",
+            "extra": "3 samples\n1 iterations"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "41898282+github-actions[bot]@users.noreply.github.com",
+            "name": "github-actions[bot]",
+            "username": "github-actions[bot]"
+          },
+          "committer": {
+            "email": "41898282+github-actions[bot]@users.noreply.github.com",
+            "name": "github-actions[bot]",
+            "username": "github-actions[bot]"
+          },
+          "distinct": true,
+          "id": "fa72d2115d00bbd10c43c6055401eb2dfce2ed59",
+          "message": "Test changes from HDF5 repo.",
+          "timestamp": "2022-08-23T16:04:45Z",
+          "tree_id": "7599041c989169b02ed28c7723f748a9aa13e0bf",
+          "url": "https://github.com/hyoklee/vol-tests/commit/fa72d2115d00bbd10c43c6055401eb2dfce2ed59"
+        },
+        "date": 1661271640712,
+        "tool": "catch2",
+        "benches": [
+          {
+            "name": "vol_test 100",
+            "value": 202.382,
+            "range": "± 90.569",
             "unit": "us",
             "extra": "3 samples\n1 iterations"
           }
