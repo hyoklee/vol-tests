@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1661357421327,
+  "lastUpdate": 1661357603353,
   "entries": {
     "Catch2 Benchmark": [
       {
@@ -6538,6 +6538,37 @@ window.BENCHMARK_DATA = {
             "name": "vol_test 100",
             "value": 318.937,
             "range": "± 212.222",
+            "unit": "us",
+            "extra": "3 samples\n1 iterations"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "hyoklee@hdfgroup.org",
+            "name": "H. Joe Lee",
+            "username": "hyoklee"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "e62cfc1012048748a9e03d52c6135d7667460ebe",
+          "message": "Merge branch 'HDFGroup:master' into master",
+          "timestamp": "2022-08-24T10:56:35-05:00",
+          "tree_id": "64d377b35caa312d58fdf956935889d23d6ab375",
+          "url": "https://github.com/hyoklee/vol-tests/commit/e62cfc1012048748a9e03d52c6135d7667460ebe"
+        },
+        "date": 1661357600144,
+        "tool": "catch2",
+        "benches": [
+          {
+            "name": "vol_test 100",
+            "value": 351.635,
+            "range": "± 211.4",
             "unit": "us",
             "extra": "3 samples\n1 iterations"
           }
