@@ -46,6 +46,8 @@ size_t n_tests_passed_g;
 size_t n_tests_failed_g;
 size_t n_tests_skipped_g;
 
+uint64_t vol_cap_flags;
+
 /* X-macro to define the following for each test:
  * - enum type
  * - name
@@ -113,6 +115,54 @@ vol_test_run(void)
             (void)vol_test_func[i]();
 }
 
+static int
+get_vol_cap_flags(const char *connector_name)
+{
+    hid_t connector_id, fapl_id;
+
+    if ((fapl_id = H5Pcreate(H5P_FILE_ACCESS)) < 0) {
+        H5_FAILED();
+        HDprintf("    couldn't get the connector ID with name\n");
+        goto error;
+    }
+
+    if ((connector_id = H5VLregister_connector_by_name(connector_name, H5P_DEFAULT)) < 0) {
+        H5_FAILED();
+        HDprintf("    couldn't get the connector ID with name\n");
+        goto error;
+    }
+
+    if (H5Pset_vol(fapl_id, connector_id, NULL) < 0) {
+        H5_FAILED();
+        HDprintf("    couldn't get the connector ID with name\n");
+        goto error;
+    }
+
+    vol_cap_flags = 0L;
+
+    if (H5Pget_vol_cap_flags(fapl_id, &vol_cap_flags) < 0) {
+        H5_FAILED();
+        HDprintf("    couldn't H5VLget_cap_flags\n");
+        goto error;
+    }
+
+    if (H5Pclose(fapl_id) < 0)
+        TEST_ERROR
+
+    if (H5VLclose(connector_id) < 0)
+        TEST_ERROR
+
+    return 0;
+
+error:
+    H5E_BEGIN_TRY {
+        H5Pclose(fapl_id);
+        H5VLclose(connector_id);
+    } H5E_END_TRY;
+
+    return -1;
+}
+
 /******************************************************************************/
 
 int main(int argc, char **argv)
@@ -170,6 +220,13 @@ int main(int argc, char **argv)
         goto done;
     }
 
+    /* Retrieve the VOL cap flags */
+    if (get_vol_cap_flags(vol_connector_name) < 0) {
+        HDfprintf(stderr, "Unable to get VOL capacity flags\n");
+        err_occurred = TRUE;
+        goto done;
+    }
+
     /* Run all the tests that are enabled */
     vol_test_run();
 
@@ -190,5 +247,5 @@ done:
     MPI_Finalize();
 #endif
 
-    HDexit((err_occurred ? EXIT_FAILURE : EXIT_SUCCESS));
+    HDexit(((err_occurred || n_tests_failed_g > 0) ? EXIT_FAILURE : EXIT_SUCCESS));
 }

@@ -12,7 +12,7 @@
 
 #include "vol_async_test.h"
 
-#ifdef _H5ESpublic_H
+#ifdef H5ESpublic_H
 
 static int test_one_dataset_io(void);
 static int test_multi_dataset_io(void);
@@ -2546,6 +2546,13 @@ vol_async_test(void)
     HDprintf("*                                            *\n");
     HDprintf("**********************************************\n\n");
 
+    /* Make sure the connector supports the API functions being tested */
+    if (!(vol_cap_flags & H5VL_CAP_FLAG_ASYNC)) {
+        SKIPPED();
+        HDprintf("    Async APIs aren't supported with this connector\n");
+        return 0;
+    }
+
     for (i = 0, nerrors = 0; i < ARRAY_LENGTH(async_tests); i++) {
         nerrors += (*async_tests[i])() ? 1 : 0;
     }
@@ -2558,7 +2565,7 @@ vol_async_test(void)
     return nerrors;
 }
 
-#else /* _H5ESpublic_H */
+#else /* H5ESpublic_H */
 
 int
 vol_async_test(void)
@@ -2574,5 +2581,4 @@ vol_async_test(void)
     return 0;
 }
 
-#endif /* _H5ESpublic_H */
-
+#endif /* H5ESpublic_H */
