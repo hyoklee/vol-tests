@@ -74,7 +74,7 @@ as a plugin. For information on how to build a VOL connector in this manner, ref
 To use the HDF5 VOL tests with a particular VOL connector, first set the following two environment variables:
 
 `HDF5_VOL_CONNECTOR` - This environment variable should be set to the name chosen for the VOL connector to
-be used. For example, HDF5's DAOS VOL connector uses the name "[daos](https://github.com/HDFGroup/vol-daos/blob/master/src/daos_vol_public.h#L34)" and would therefore set:
+be used. For example, HDF5's DAOS VOL connector uses the name "[daos](https://github.com/HDFGroup/vol-daos/blob/master/src/daos_vol.h#L30)" and would therefore set:
 
     HDF5_VOL_CONNECTOR=daos
 
@@ -111,4 +111,3 @@ the native HDF5 VOL connector and an error similar to the following will appear 
 ### Help and Support
 
 For help with building or using the HDF5 VOL tests, please contact the [HDF Help Desk](https://portal.hdfgroup.org/display/support/The+HDF+Help+Desk).
-
