@@ -41,7 +41,7 @@ extern "C" {
 #include "vol_object_test.h"
 #include "vol_misc_test.h"
 #ifdef H5VL_TEST_HAS_ASYNC
-#    include "vol_async_test.h"
+#include "vol_async_test.h"
 #endif
 }
 char vol_test_filename[VOL_TEST_FILENAME_MAX_LENGTH];
@@ -58,61 +58,61 @@ size_t n_tests_skipped_g;
  * - enabled by default
  */
 #ifdef H5VL_TEST_HAS_ASYNC
-#define VOL_TESTS                                               \
-    X(VOL_TEST_NULL,       "",         NULL,               0)   \
-    X(VOL_TEST_FILE,      "file",      vol_file_test,      0)   \
-    X(VOL_TEST_GROUP,     "group",     vol_group_test,     0)   \
-    X(VOL_TEST_DATASET,   "dataset",   vol_dataset_test,   0)   \
-    X(VOL_TEST_DATATYPE,  "datatype",  vol_datatype_test,  0)   \
-    X(VOL_TEST_ATTRIBUTE, "attribute", vol_attribute_test, 0)   \
-    X(VOL_TEST_LINK,      "link",      vol_link_test,      0)   \
-    X(VOL_TEST_OBJECT,    "object",    vol_object_test,    0)   \
-    X(VOL_TEST_MISC,      "misc",      vol_misc_test,      0)   \
-    X(VOL_TEST_ASYNC,     "async",     vol_async_test,     0)   \
-    X(VOL_TEST_MAX,       "",          NULL,               0)
+#define VOL_TESTS                                                                                            \
+    X(VOL_TEST_NULL, "", NULL, 0)                                                                            \
+    X(VOL_TEST_FILE, "file", vol_file_test, 0)                                                               \
+    X(VOL_TEST_GROUP, "group", vol_group_test, 0)                                                            \
+    X(VOL_TEST_DATASET, "dataset", vol_dataset_test, 0)                                                      \
+    X(VOL_TEST_DATATYPE, "datatype", vol_datatype_test, 0)                                                   \
+    X(VOL_TEST_ATTRIBUTE, "attribute", vol_attribute_test, 0)                                                \
+    X(VOL_TEST_LINK, "link", vol_link_test, 0)                                                               \
+    X(VOL_TEST_OBJECT, "object", vol_object_test, 0)                                                         \
+    X(VOL_TEST_MISC, "misc", vol_misc_test, 0)                                                               \
+    X(VOL_TEST_ASYNC, "async", vol_async_test, 0)                                                            \
+    X(VOL_TEST_MAX, "", NULL, 0)
 #else
-#define VOL_TESTS                                               \
-    X(VOL_TEST_NULL,       "",         NULL,               0)   \
-    X(VOL_TEST_FILE,      "file",      vol_file_test,      1)   \
-    X(VOL_TEST_GROUP,     "group",     vol_group_test,     0)   \
-    X(VOL_TEST_DATASET,   "dataset",   vol_dataset_test,   0)   \
-    X(VOL_TEST_DATATYPE,  "datatype",  vol_datatype_test,  0)   \
-    X(VOL_TEST_ATTRIBUTE, "attribute", vol_attribute_test, 0)   \
-    X(VOL_TEST_LINK,      "link",      vol_link_test,      0)   \
-    X(VOL_TEST_OBJECT,    "object",    vol_object_test,    0)   \
-    X(VOL_TEST_MISC,      "misc",      vol_misc_test,      0)   \
-    X(VOL_TEST_MAX,       "",          NULL,               0)
+#define VOL_TESTS                                                                                            \
+    X(VOL_TEST_NULL, "", NULL, 0)                                                                            \
+    X(VOL_TEST_FILE, "file", vol_file_test, 1)                                                               \
+    X(VOL_TEST_GROUP, "group", vol_group_test, 0)                                                            \
+    X(VOL_TEST_DATASET, "dataset", vol_dataset_test, 0)                                                      \
+    X(VOL_TEST_DATATYPE, "datatype", vol_datatype_test, 0)                                                   \
+    X(VOL_TEST_ATTRIBUTE, "attribute", vol_attribute_test, 0)                                                \
+    X(VOL_TEST_LINK, "link", vol_link_test, 0)                                                               \
+    X(VOL_TEST_OBJECT, "object", vol_object_test, 0)                                                         \
+    X(VOL_TEST_MISC, "misc", vol_misc_test, 0)                                                               \
+    X(VOL_TEST_MAX, "", NULL, 0)
 #endif
 
 #define X(a, b, c, d) a,
 enum vol_test_type { VOL_TESTS };
 #undef X
 #define X(a, b, c, d) b,
-static char * const vol_test_name[] = { VOL_TESTS };
+static char *const vol_test_name[] = {VOL_TESTS};
 #undef X
 #define X(a, b, c, d) c,
-static int (*vol_test_func[])(void) = { VOL_TESTS };
+static int (*vol_test_func[])(void) = {VOL_TESTS};
 #undef X
 #define X(a, b, c, d) d,
-static int vol_test_enabled[] = { VOL_TESTS };
+static int vol_test_enabled[] = {VOL_TESTS};
 #undef X
 
 static enum vol_test_type
 vol_test_name_to_type(const char *test_name)
 {
-    
+
     int j = 0;
-    while(strcmp(vol_test_name[j], test_name) && j != VOL_TEST_MAX)
+    while (strcmp(vol_test_name[j], test_name) && j != VOL_TEST_MAX)
         j++;
 
-    return((j == VOL_TEST_MAX) ? VOL_TEST_NULL : static_cast<vol_test_type>(j));
+    return ((j == VOL_TEST_MAX) ? VOL_TEST_NULL : static_cast<vol_test_type>(j));
 }
 
 static void
 vol_test_run(void)
 {
     enum vol_test_type i;
-    int j = static_cast<int>(i);
+    int                j = static_cast<int>(i);
     for (j = VOL_TEST_FILE; j < VOL_TEST_MAX; ++j)
         if (vol_test_enabled[j])
             (void)vol_test_func[j]();
@@ -120,9 +120,10 @@ vol_test_run(void)
 
 /******************************************************************************/
 
-int test(int argc, char **argv)
+int
+test(int argc, char **argv)
 {
-    char *vol_connector_name;
+    char   *vol_connector_name;
     hbool_t err_occurred = FALSE;
 
     /* Simple argument checking, TODO can improve that later */
@@ -137,8 +138,8 @@ int test(int argc, char **argv)
 
 #ifdef H5_HAVE_PARALLEL
     /* If HDF5 was built with parallel enabled, go ahead and call MPI_Init before
-     * running these tests. Even though these are meant to be serial tests, 
-     * they willlikely be run using mpirun (or similar) and 
+     * running these tests. Even though these are meant to be serial tests,
+     * they willlikely be run using mpirun (or similar) and
      * we cannot necessarily expect HDF5 or an HDF5 VOL connector to call MPI_Init.
      */
     MPI_Init(&argc, &argv);
@@ -146,12 +147,12 @@ int test(int argc, char **argv)
 
     /* h5_reset(); */
 
-    n_tests_run_g = 0;
-    n_tests_passed_g = 0;
-    n_tests_failed_g = 0;
+    n_tests_run_g     = 0;
+    n_tests_passed_g  = 0;
+    n_tests_failed_g  = 0;
     n_tests_skipped_g = 0;
 
-    srand((unsigned) HDtime(NULL));
+    srand((unsigned)HDtime(NULL));
 
     HDsnprintf(vol_test_filename, VOL_TEST_FILENAME_MAX_LENGTH, "%s", TEST_FILE_NAME);
 
@@ -184,11 +185,12 @@ int test(int argc, char **argv)
     H5Fdelete(vol_test_filename, H5P_DEFAULT);
     /*
     HDprintf("%ld/%ld (%.2f%%) VOL tests passed with VOL connector '%s'\n",
-            (long) n_tests_passed_g, (long) n_tests_run_g, ((float) n_tests_passed_g / (float) n_tests_run_g * 100.0), vol_connector_name);
-    HDprintf("%ld/%ld (%.2f%%) VOL tests did not pass with VOL connector '%s'\n",
-            (long) n_tests_failed_g, (long) n_tests_run_g, ((float) n_tests_failed_g / (float) n_tests_run_g * 100.0), vol_connector_name);
-    HDprintf("%ld/%ld (%.2f%%) VOL tests were skipped with VOL connector '%s'\n",
-            (long) n_tests_skipped_g, (long) n_tests_run_g, ((float) n_tests_skipped_g / (float) n_tests_run_g * 100.0), vol_connector_name);
+            (long) n_tests_passed_g, (long) n_tests_run_g, ((float) n_tests_passed_g / (float) n_tests_run_g *
+    100.0), vol_connector_name); HDprintf("%ld/%ld (%.2f%%) VOL tests did not pass with VOL connector '%s'\n",
+            (long) n_tests_failed_g, (long) n_tests_run_g, ((float) n_tests_failed_g / (float) n_tests_run_g *
+    100.0), vol_connector_name); HDprintf("%ld/%ld (%.2f%%) VOL tests were skipped with VOL connector '%s'\n",
+            (long) n_tests_skipped_g, (long) n_tests_run_g, ((float) n_tests_skipped_g / (float) n_tests_run_g
+    * 100.0), vol_connector_name);
     */
 done:
     H5close();
@@ -200,9 +202,11 @@ done:
     HDexit((err_occurred ? EXIT_FAILURE : EXIT_SUCCESS));
 }
 
-TEST_CASE("vol_test") {
-  // now let's benchmark:
-  BENCHMARK("vol_test 100") {
-    vol_test_run();
-  };
+TEST_CASE("vol_test")
+{
+    // now let's benchmark:
+    BENCHMARK("vol_test 100")
+    {
+        vol_test_run();
+    };
 }
