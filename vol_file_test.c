@@ -3123,7 +3123,6 @@ static void
 cleanup_files(void)
 {
     H5Fdelete(FILE_CREATE_TEST_FILENAME, H5P_DEFAULT);
-#if 0
     H5Fdelete(FILE_CREATE_EXCL_FILE_NAME, H5P_DEFAULT);
 
     /* The below file should not get created */
