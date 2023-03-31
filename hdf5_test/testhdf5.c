@@ -1,12 +1,11 @@
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * Copyright by The HDF Group.                                               *
- * Copyright by the Board of Trustees of the University of Illinois.         *
  * All rights reserved.                                                      *
  *                                                                           *
  * This file is part of HDF5.  The full HDF5 copyright notice, including     *
  * terms governing use, modification, and redistribution, is contained in    *
  * the COPYING file, which can be found at the root of the source code       *
- * distribution tree, or in https://support.hdfgroup.org/ftp/HDF5/releases.  *
+ * distribution tree, or in https://www.hdfgroup.org/licenses.               *
  * If you do not have access to either file, you may request a copy from     *
  * help@hdfgroup.org.                                                        *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
@@ -37,10 +36,10 @@
 
 int nerrors = 0;
 
-char  *paraprefix = NULL;  /* for command line option para-prefix */
+char *paraprefix = NULL; /* for command line option para-prefix */
 
 /* Length of multi-file VFD filename buffers */
-#define H5TEST_MULTI_FILENAME_LEN       1024
+#define H5TEST_MULTI_FILENAME_LEN 1024
 
 /*
  * This routine is designed to provide equivalent functionality to 'printf'
@@ -51,13 +50,13 @@ H5_ATTR_FORMAT(printf, 1, 2)
 int
 print_func(const char *format, ...)
 {
-  va_list arglist;
-  int ret_value;
+    va_list arglist;
+    int     ret_value;
 
-  HDva_start(arglist, format);
-  ret_value = HDvprintf(format, arglist);
-  HDva_end(arglist);
-  return ret_value;
+    HDva_start(arglist, format);
+    ret_value = HDvprintf(format, arglist);
+    HDva_end(arglist);
+    return ret_value;
 }
 
 /*
@@ -68,7 +67,7 @@ int
 TestErrPrintf(const char *format, ...)
 {
     va_list arglist;
-    int ret_value;
+    int     ret_value;
 
     /* Increment the error count */
     nerrors++;
@@ -110,27 +109,27 @@ TestErrPrintf(const char *format, ...)
  *-------------------------------------------------------------------------
  */
 char *
-getenv_all(MPI_Comm comm, int root, const char* name)
+getenv_all(MPI_Comm comm, int root, const char *name)
 {
-    int mpi_size, mpi_rank, mpi_initialized, mpi_finalized;
-    int len;
-    static char* env = NULL;
+    int          mpi_size, mpi_rank, mpi_initialized, mpi_finalized;
+    int          len;
+    static char *env = NULL;
 
     HDassert(name);
 
     MPI_Initialized(&mpi_initialized);
     MPI_Finalized(&mpi_finalized);
 
-    if(mpi_initialized && !mpi_finalized) {
+    if (mpi_initialized && !mpi_finalized) {
         MPI_Comm_rank(comm, &mpi_rank);
         MPI_Comm_size(comm, &mpi_size);
         HDassert(root < mpi_size);
 
         /* The root task does the getenv call
          * and sends the result to the other tasks */
-        if(mpi_rank == root) {
+        if (mpi_rank == root) {
             env = HDgetenv(name);
-            if(env) {
+            if (env) {
                 len = (int)HDstrlen(env);
                 MPI_Bcast(&len, 1, MPI_INT, root, comm);
                 MPI_Bcast(env, len, MPI_CHAR, root, comm);
@@ -143,17 +142,17 @@ getenv_all(MPI_Comm comm, int root, const char* name)
         }
         else {
             MPI_Bcast(&len, 1, MPI_INT, root, comm);
-            if(len >= 0) {
-                if(env == NULL)
-                    env = (char*) HDmalloc((size_t)len+1);
-                else if(HDstrlen(env) < (size_t)len)
-                    env = (char*) HDrealloc(env, (size_t)len+1);
+            if (len >= 0) {
+                if (env == NULL)
+                    env = (char *)HDmalloc((size_t)len + 1);
+                else if (HDstrlen(env) < (size_t)len)
+                    env = (char *)HDrealloc(env, (size_t)len + 1);
 
                 MPI_Bcast(env, len, MPI_CHAR, root, comm);
                 env[len] = '\0';
             }
             else {
-                if(env)
+                if (env)
                     HDfree(env);
                 env = NULL;
             }
@@ -164,7 +163,7 @@ getenv_all(MPI_Comm comm, int root, const char* name)
     }
     else {
         /* use original getenv */
-        if(env)
+        if (env)
             HDfree(env);
         env = HDgetenv(name);
     } /* end if */
@@ -192,19 +191,19 @@ getenv_all(MPI_Comm comm, int root, const char* name)
 hid_t
 h5_fileaccess(void)
 {
-    hid_t       fapl_id = H5I_INVALID_HID;
+    hid_t fapl_id = H5I_INVALID_HID;
 
-    if((fapl_id = H5Pcreate(H5P_FILE_ACCESS)) < 0)
+    if ((fapl_id = H5Pcreate(H5P_FILE_ACCESS)) < 0)
         goto error;
 
     /* Finally, check for libver bounds */
-    if(h5_get_libver_fapl(fapl_id) < 0)
+    if (h5_get_libver_fapl(fapl_id) < 0)
         goto error;
 
     return fapl_id;
 
 error:
-    if(fapl_id != H5I_INVALID_HID)
+    if (fapl_id != H5I_INVALID_HID)
         H5Pclose(fapl_id);
     return H5I_INVALID_HID;
 } /* end h5_fileaccess() */
@@ -226,23 +225,23 @@ error:
 herr_t
 h5_get_libver_fapl(hid_t fapl)
 {
-    const char  *env = NULL;    /* HDF5_DRIVER environment variable     */
-    const char  *tok = NULL;    /* strtok pointer                       */
-    char        *lasts = NULL;  /* Context pointer for strtok_r() call */
-    char        buf[1024];      /* buffer for tokenizing HDF5_DRIVER    */
+    const char *env   = NULL; /* HDF5_DRIVER environment variable     */
+    const char *tok   = NULL; /* strtok pointer                       */
+    char       *lasts = NULL; /* Context pointer for strtok_r() call */
+    char        buf[1024];    /* buffer for tokenizing HDF5_DRIVER    */
 
     /* Get the environment variable, if it exists */
     env = HDgetenv("HDF5_LIBVER_BOUNDS");
 #ifdef HDF5_LIBVER_BOUNDS
     /* Use the environment variable, then the compile-time constant */
-    if(!env)
+    if (!env)
         env = HDF5_LIBVER_BOUNDS;
 #endif
 
     /* If the environment variable was not set, just return
      * without modifying the FAPL.
      */
-    if(!env || !*env)
+    if (!env || !*env)
         goto done;
 
     /* Get the first 'word' of the environment variable.
@@ -251,12 +250,12 @@ h5_get_libver_fapl(hid_t fapl)
      */
     HDstrncpy(buf, env, sizeof(buf));
     buf[sizeof(buf) - 1] = '\0';
-    if(NULL == (tok = HDstrtok_r(buf, " \t\n\r", &lasts)))
+    if (NULL == (tok = HDstrtok_r(buf, " \t\n\r", &lasts)))
         goto done;
 
-    if(!HDstrcmp(tok, "latest")) {
+    if (!HDstrcmp(tok, "latest")) {
         /* use the latest format */
-        if(H5Pset_libver_bounds(fapl, H5F_LIBVER_LATEST, H5F_LIBVER_LATEST) < 0)
+        if (H5Pset_libver_bounds(fapl, H5F_LIBVER_LATEST, H5F_LIBVER_LATEST) < 0)
             goto error;
     } /* end if */
     else {
@@ -275,12 +274,12 @@ error:
 #define HDF5_PARAPREFIX ""
 #endif
 static char *
-h5_fixname_real(const char *base_name, hid_t fapl, const char *_suffix,
-    char *fullname, size_t size, hbool_t nest_printf, hbool_t subst_for_superblock)
+h5_fixname_real(const char *base_name, hid_t fapl, const char *_suffix, char *fullname, size_t size,
+                hbool_t nest_printf, hbool_t subst_for_superblock)
 {
     const char *prefix         = NULL;
     const char *driver_env_var = NULL; /* HDF5_DRIVER environment variable     */
-    char *      ptr, last = '\0';
+    char       *ptr, last = '\0';
     const char *suffix = _suffix;
     size_t      i, j;
     hid_t       driver     = -1;
@@ -509,13 +508,54 @@ h5_fixname_superblock(const char *base_name, hid_t fapl_id, char *fullname, size
     return (h5_fixname_real(base_name, fapl_id, ".h5", fullname, size, FALSE, TRUE));
 }
 
+hbool_t
+h5_using_default_driver(const char *drv_name)
+{
+    hbool_t ret_val = TRUE;
+
+    HDassert(H5_DEFAULT_VFD == H5FD_SEC2);
+
+    if (!drv_name)
+        drv_name = HDgetenv(HDF5_DRIVER);
+
+    if (drv_name)
+        return (!HDstrcmp(drv_name, "sec2") || !HDstrcmp(drv_name, "nomatch"));
+
+    return ret_val;
+}
+
+herr_t
+h5_driver_is_default_vfd_compatible(hid_t fapl_id, hbool_t *default_vfd_compatible)
+{
+    unsigned long feat_flags = 0;
+    hid_t         driver_id  = H5I_INVALID_HID;
+    herr_t        ret_value  = SUCCEED;
+
+    HDassert(fapl_id >= 0);
+    HDassert(default_vfd_compatible);
+
+    if (fapl_id == H5P_DEFAULT)
+        fapl_id = H5P_FILE_ACCESS_DEFAULT;
+
+    if ((driver_id = H5Pget_driver(fapl_id)) < 0)
+        return FAIL;
+
+    if (H5FDdriver_query(driver_id, &feat_flags) < 0)
+        return FAIL;
+
+    *default_vfd_compatible = (feat_flags & H5FD_FEAT_DEFAULT_VFD_COMPATIBLE);
+
+    return ret_value;
+} /* end h5_driver_is_default_vfd_compatible() */
+
 int
 main(int argc, char *argv[])
 {
 #if defined(H5_PARALLEL_TEST)
     MPI_Init(&argc, &argv);
 #else
-    (void)argc; (void)argv;
+    (void)argc;
+    (void)argv;
 #endif
 
     HDprintf("===================================\n");
@@ -583,7 +623,8 @@ main(int argc, char *argv[])
     test_time();
     HDprintf("\n");
 
-    /* AddTest("ref_deprec", test_reference_deprec, cleanup_reference_deprec,  "Deprecated References", NULL); */
+    /* AddTest("ref_deprec", test_reference_deprec, cleanup_reference_deprec,  "Deprecated References", NULL);
+     */
 
     /* AddTest("ref", test_reference, cleanup_reference,  "References", NULL); */
     HDprintf("** REFERENCES **\n");
@@ -644,29 +685,29 @@ main(int argc, char *argv[])
         TestSummary(); */
 
     /* Clean up test files, if allowed */
-    if (/* GetTestCleanup() && */!getenv("HDF5_NOCLEANUP")) {
+    if (/* GetTestCleanup() && */ !getenv("HDF5_NOCLEANUP")) {
         /* TestCleanup(); */
 
         HDprintf("TEST CLEANUP\n");
 
         H5E_BEGIN_TRY
-            cleanup_configure();
-            cleanup_checksum();
-            cleanup_file();
-            cleanup_h5o();
-            cleanup_h5s();
-            cleanup_coords();
-            cleanup_attr();
-            cleanup_select();
-            cleanup_time();
-            cleanup_reference();
-            cleanup_vltypes();
-            cleanup_vlstrings();
-            cleanup_iterate();
-            cleanup_array();
-            cleanup_genprop();
-            cleanup_unicode();
-            cleanup_misc();
+        cleanup_configure();
+        cleanup_checksum();
+        cleanup_file();
+        cleanup_h5o();
+        cleanup_h5s();
+        cleanup_coords();
+        cleanup_attr();
+        cleanup_select();
+        cleanup_time();
+        cleanup_reference();
+        cleanup_vltypes();
+        cleanup_vlstrings();
+        cleanup_iterate();
+        cleanup_array();
+        cleanup_genprop();
+        cleanup_unicode();
+        cleanup_misc();
         H5E_END_TRY;
 
         HDprintf("\n");
@@ -680,9 +721,9 @@ main(int argc, char *argv[])
     if (nerrors /* GetTestNumErrs() */ > 0) {
         HDprintf("** HDF5 tests failed with %d errors **\n", nerrors);
         HDexit(EXIT_FAILURE);
-    } else {
+    }
+    else {
         HDprintf("** HDF5 tests ran successfully **\n");
         HDexit(EXIT_SUCCESS);
     }
-}   /* end main() */
-
+} /* end main() */
