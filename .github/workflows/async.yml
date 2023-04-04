@@ -13,21 +13,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout vol-tests
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
     - name: Checkout HDF5
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       with:
         repository: HDFGroup/hdf5
         path: hdf5
     - name: Checkout Argobots
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       with:
         repository: pmodels/argobots
         path: abt
     - name: Checkout vol-async
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       with:
-        repository: hyoklee/vol-async
+        repository: HDFGroup/vol-async
         path: vol-async
     
     - name: Install dependencies

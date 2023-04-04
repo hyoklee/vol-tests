@@ -9,14 +9,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout vol-tests
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
     - name: Checkout HDF5
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       with:
         repository: HDFGroup/hdf5
         path: hdf5
     - name: Checkout Log-based VOL
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       with:
         repository: DataLib-ECP/vol-log-based
         path: vol-log-based
@@ -31,7 +31,7 @@ jobs:
         export HDF5_LIBTOOL=/usr/bin/libtoolize
         ./autogen.sh
         ./configure --prefix=/usr/local --enable-parallel CC=mpicc
-        make -j2 && sudo make -j2 install
+        make -j && sudo make -j install
         git rev-parse HEAD > git.txt
     - name: Install Log-based VOL
       env:

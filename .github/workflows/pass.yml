@@ -9,16 +9,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout vol-tests
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
     - name: Checkout HDF5
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       with:
         repository: HDFGroup/hdf5
         path: hdf5
     - name: Checkout vol-external-passthrough
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       with:
-        repository: hyoklee/vol-external-passthrough
+        repository: hpc-io/vol-external-passthrough
         path: vol-external-passthrough
     
     - name: Install dependencies
@@ -36,7 +36,7 @@ jobs:
         CXX: mpic++
         CC: mpicc
         HDF5_PLUGIN_PATH: /usr/local/lib
-        HDF5_VOL_CONNECTOR: async under_vol=0;under_info={}
+        HDF5_VOL_CONNECTOR: pass_through_ext under_vol=0;under_info={};
       run: |
         mkdir vol-external-passthrough/build
         cd vol-external-passthrough/build

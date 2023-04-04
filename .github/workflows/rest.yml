@@ -9,12 +9,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout vol-tests
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
     - name: Checkout REST VOL
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       with:
-        repository: hyoklee/vol-rest
-        ref: hdf5_1_12_update
+        repository: HDFGroup/vol-rest
         path: vol-rest
         submodules: recursive
     - name: Install dependencies
