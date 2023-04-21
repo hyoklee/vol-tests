@@ -3,6 +3,11 @@ cmake_minimum_required(VERSION 3.12)
 # project(HDF5_VOL_TEST C)
 project(HDF5_VOL_TEST)
 
+if (POLICY CMP0074)
+  # find_package() uses <PackageName>_ROOT variables.
+  cmake_policy (SET CMP0074 NEW)
+endif ()
+
 #------------------------------------------------------------------------------
 # Setup install and output Directories
 #------------------------------------------------------------------------------
@@ -108,6 +113,11 @@ include_directories(
 # External dependencies
 #------------------------------------------------------------------------------
 # HDF5
+
+if (POLICY CMP0074)
+  SET(HDF5_ROOT ${HDF5_DIR})
+endif ()
+
 # Save a copy of HDF5_DIR set by the user.
 SET(ORIG_HDF5_DIR ${HDF5_DIR})
 find_package(HDF5 NO_MODULE NAMES hdf5 COMPONENTS C shared)
@@ -392,6 +402,8 @@ if(HDF5_VOL_TEST_SERVER)
     )
   else()
     foreach(vol_test ${vol_tests})
+      set(last_vol_test "")
+
       add_test(NAME "h5vl_test_${vol_test}"
         COMMAND $<TARGET_FILE:h5vl_test_driver>
         --server ${HDF5_VOL_TEST_SERVER}
@@ -399,6 +411,10 @@ if(HDF5_VOL_TEST_SERVER)
         --serial
         ${HDF5_VOL_TEST_DRIVER_EXTRA_FLAGS}
       )
+
+      set_tests_properties("h5vl_test_${vol_test}" PROPERTIES DEPENDS "${last_vol_test}")
+
+      set(last_vol_test "h5vl_test_${vol_test}")
     endforeach()
   endif()
 
@@ -457,10 +473,16 @@ else()
       COMMAND $<TARGET_FILE:h5vl_test>
     )
   else()
+    set(last_vol_test "")
+
     foreach(vol_test ${vol_tests})
       add_test(NAME "h5vl_test_${vol_test}"
         COMMAND $<TARGET_FILE:h5vl_test> ${vol_test}
       )
+
+      set_tests_properties("h5vl_test_${vol_test}" PROPERTIES DEPENDS "${last_vol_test}")
+
+      set(last_vol_test "h5vl_test_${vol_test}")
     endforeach()
   endif()
 

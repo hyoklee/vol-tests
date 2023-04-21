@@ -1,3 +1,4 @@
+[![HDF5 API test CI](https://github.com/hyoklee/vol-tests/actions/workflows/main.yml/badge.svg)](https://github.com/hyoklee/vol-tests/actions/workflows/main.yml)
 [![Test HDF5 develop branch](https://github.com/hyoklee/vol-tests/actions/workflows/cmake.yml/badge.svg)](https://github.com/hyoklee/vol-tests/actions/workflows/cmake.yml)
 [![Test HDF5 async VOL](https://github.com/hyoklee/vol-tests/actions/workflows/async.yml/badge.svg)](https://github.com/hyoklee/vol-tests/actions/workflows/async.yml)
 [![Test HDF5 cache VOL](https://github.com/hyoklee/vol-tests/actions/workflows/cache.yml/badge.svg)](https://github.com/hyoklee/vol-tests/actions/workflows/cache.yml)
@@ -5,6 +6,7 @@
 [![Test HDF5 ADIOS2 VOL](https://github.com/hyoklee/vol-tests/actions/workflows/adios2.yml/badge.svg)](https://github.com/hyoklee/vol-tests/actions/workflows/adios2.yml)
 [![Test HDF5 Log-based VOL](https://github.com/hyoklee/vol-tests/actions/workflows/log.yml/badge.svg)](https://github.com/hyoklee/vol-tests/actions/workflows/log.yml)
 [![Test HDF5 REST VOL](https://github.com/hyoklee/vol-tests/actions/workflows/rest.yml/badge.svg)](https://github.com/hyoklee/vol-tests/actions/workflows/rest.yml)
+
 # HDF5 VOL Tests
 
 See https://hyoklee.github.io/vol-tests/dev/bench/ for benchmark performance.

@@ -40,4 +40,5 @@ jobs:
         cd vol-rest/build
         cmake ..
         make
-        ctest
+        ctest -V
+

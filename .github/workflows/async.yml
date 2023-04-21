@@ -74,7 +74,7 @@ jobs:
         cd build
         cmake .. -DHDF5_DIR=/usr/local -DHDF5_VOL_TEST_ENABLE_PARALLEL:BOOL=ON -DHDF5_VOL_TEST_ENABLE_ASYNC:BOOL=ON -DHDF5_VOL_TEST_ENABLE_PART:BOOL=ON
         make
-        ctest
+        ctest -V
         pwd
         ls
         ./bin/h5vl_test | tee ../output.txt
@@ -85,6 +85,7 @@ jobs:
         name: git.txt
         path: ${{ runner.workspace }}/vol-tests/hdf5/git.txt
 
+<<<<<<< HEAD
     - name: Store benchmark result
       uses: hyoklee/github-action-benchmark@v1
       with:
@@ -98,3 +99,5 @@ jobs:
         comment-on-alert: false
         fail-on-alert: false
         alert-comment-cc-users: "@hyoklee"         
+=======
+>>>>>>> upstream/master
