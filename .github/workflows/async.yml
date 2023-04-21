@@ -85,7 +85,6 @@ jobs:
         name: git.txt
         path: ${{ runner.workspace }}/vol-tests/hdf5/git.txt
 
-<<<<<<< HEAD
     - name: Store benchmark result
       uses: hyoklee/github-action-benchmark@v1
       with:
@@ -99,5 +98,3 @@ jobs:
         comment-on-alert: false
         fail-on-alert: false
         alert-comment-cc-users: "@hyoklee"         
-=======
->>>>>>> upstream/master
