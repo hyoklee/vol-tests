@@ -132,7 +132,7 @@ test(int argc, char **argv)
 
 =======
     char   *vol_connector_name;
-    hid_t   fapl_id      = H5I_INVALID_HID;    
+    hid_t   fapl_id      = H5I_INVALID_HID;
     hbool_t err_occurred = FALSE;
  
 >>>>>>> 4d57980 (fix(vol_test.cpp): add fapl_id)
