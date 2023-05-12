@@ -123,10 +123,10 @@ vol_test_run(void)
 int
 test(int argc, char **argv)
 {
-    char   *vol_connector_name;
-    hbool_t err_occurred = FALSE;
+    char    *vol_connector_name;
+    hbool_t  err_occurred = FALSE;
     uint64_t vol_cap_flags_g;
- 
+
     /* Simple argument checking, TODO can improve that later */
     if (argc > 1) {
         enum vol_test_type i = vol_test_name_to_type(argv[1]);
@@ -175,7 +175,7 @@ test(int argc, char **argv)
         err_occurred = TRUE;
         goto done;
     }
-    
+
     /*
      * Create the file that will be used for all of the tests,
      * except for those which test file creation.
