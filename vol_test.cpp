@@ -51,6 +51,8 @@ size_t n_tests_passed_g;
 size_t n_tests_failed_g;
 size_t n_tests_skipped_g;
 
+uint64_t vol_cap_flags_g;
+
 /* X-macro to define the following for each test:
  * - enum type
  * - name
@@ -123,10 +125,17 @@ vol_test_run(void)
 int
 test(int argc, char **argv)
 {
+<<<<<<< HEAD
     char    *vol_connector_name;
     hbool_t  err_occurred = FALSE;
     uint64_t vol_cap_flags_g;
 
+=======
+    char   *vol_connector_name;
+    hid_t   fapl_id      = H5I_INVALID_HID;    
+    hbool_t err_occurred = FALSE;
+ 
+>>>>>>> 4d57980 (fix(vol_test.cpp): add fapl_id)
     /* Simple argument checking, TODO can improve that later */
     if (argc > 1) {
         enum vol_test_type i = vol_test_name_to_type(argv[1]);
@@ -168,7 +177,14 @@ test(int argc, char **argv)
     HDprintf("  - Test file name: '%s'\n", vol_test_filename);
     HDprintf("\n\n");
     */
-
+    /* Retrieve the VOL cap flags - work around an HDF5
+     * library issue by creating a FAPL
+     */
+    if ((fapl_id = H5Pcreate(H5P_FILE_ACCESS)) < 0) {
+        HDfprintf(stderr, "Unable to create FAPL\n");
+        err_occurred = TRUE;
+        goto done;
+    }
     vol_cap_flags_g = H5VL_CAP_FLAG_NONE;
     if (H5Pget_vol_cap_flags(fapl_id, &vol_cap_flags_g) < 0) {
         HDfprintf(stderr, "Unable to retrieve VOL connector capability flags\n");
