@@ -125,7 +125,8 @@ test(int argc, char **argv)
 {
     char   *vol_connector_name;
     hbool_t err_occurred = FALSE;
-
+    uint64_t vol_cap_flags_g;
+ 
     /* Simple argument checking, TODO can improve that later */
     if (argc > 1) {
         enum vol_test_type i = vol_test_name_to_type(argv[1]);
@@ -168,11 +169,18 @@ test(int argc, char **argv)
     HDprintf("\n\n");
     */
 
+    vol_cap_flags_g = H5VL_CAP_FLAG_NONE;
+    if (H5Pget_vol_cap_flags(fapl_id, &vol_cap_flags_g) < 0) {
+        HDfprintf(stderr, "Unable to retrieve VOL connector capability flags\n");
+        err_occurred = TRUE;
+        goto done;
+    }
+    
     /*
      * Create the file that will be used for all of the tests,
      * except for those which test file creation.
      */
-    if (create_test_container(vol_test_filename) < 0) {
+    if (create_test_container(vol_test_filename, vol_cap_flags_g) < 0) {
         HDfprintf(stderr, "Unable to create testing container file '%s'\n", vol_test_filename);
         err_occurred = TRUE;
         goto done;
