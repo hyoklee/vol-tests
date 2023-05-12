@@ -46,6 +46,8 @@ extern "C" {
 }
 char vol_test_filename[VOL_TEST_FILENAME_MAX_LENGTH];
 
+const char *test_path_prefix;
+
 size_t n_tests_run_g;
 size_t n_tests_passed_g;
 size_t n_tests_failed_g;
@@ -102,7 +104,6 @@ static int vol_test_enabled[] = {VOL_TESTS};
 static enum vol_test_type
 vol_test_name_to_type(const char *test_name)
 {
-
     int j = 0;
     while (strcmp(vol_test_name[j], test_name) && j != VOL_TEST_MAX)
         j++;
@@ -142,7 +143,7 @@ test(int argc, char **argv)
 #ifdef H5_HAVE_PARALLEL
     /* If HDF5 was built with parallel enabled, go ahead and call MPI_Init before
      * running these tests. Even though these are meant to be serial tests,
-     * they willlikely be run using mpirun (or similar) and
+     * they will likely be run using mpirun (or similar) and
      * we cannot necessarily expect HDF5 or an HDF5 VOL connector to call MPI_Init.
      */
     MPI_Init(&argc, &argv);
@@ -210,13 +211,17 @@ test(int argc, char **argv)
     * 100.0), vol_connector_name);
     */
 done:
+    if (fapl_id >= 0 && H5Pclose(fapl_id) < 0) {
+        HDfprintf(stderr, "Unable to close FAPL\n");
+        err_occurred = TRUE;
+    }    
     H5close();
 
 #ifdef H5_HAVE_PARALLEL
     MPI_Finalize();
 #endif
-
-    HDexit((err_occurred ? EXIT_FAILURE : EXIT_SUCCESS));
+    
+    HDexit(((err_occurred || n_tests_failed_g > 0) ? EXIT_FAILURE : EXIT_SUCCESS));
 }
 
 TEST_CASE("vol_test")
