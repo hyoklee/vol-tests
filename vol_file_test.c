@@ -2542,21 +2542,20 @@ vol_file_test(void)
 {
     size_t i;
     int    nerrors;
-#if 0
+
     HDprintf("**********************************************\n");
     HDprintf("*                                            *\n");
     HDprintf("*               VOL File Tests               *\n");
     HDprintf("*                                            *\n");
     HDprintf("**********************************************\n\n");
-#endif
+
     for (i = 0, nerrors = 0; i < ARRAY_LENGTH(file_tests); i++) {
         nerrors += (*file_tests[i])() ? 1 : 0;
     }
-#if 0
+
     HDprintf("\n");
 
     HDprintf("Cleaning up testing files\n");
-#endif
     cleanup_files();
 
     return nerrors;
