@@ -125,17 +125,10 @@ vol_test_run(void)
 int
 test(int argc, char **argv)
 {
-<<<<<<< HEAD
-    char    *vol_connector_name;
-    hbool_t  err_occurred = FALSE;
-    uint64_t vol_cap_flags_g;
-
-=======
     char   *vol_connector_name;
     hid_t   fapl_id      = H5I_INVALID_HID;
     hbool_t err_occurred = FALSE;
  
->>>>>>> 4d57980 (fix(vol_test.cpp): add fapl_id)
     /* Simple argument checking, TODO can improve that later */
     if (argc > 1) {
         enum vol_test_type i = vol_test_name_to_type(argv[1]);
