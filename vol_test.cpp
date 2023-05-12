@@ -214,13 +214,13 @@ done:
     if (fapl_id >= 0 && H5Pclose(fapl_id) < 0) {
         HDfprintf(stderr, "Unable to close FAPL\n");
         err_occurred = TRUE;
-    }    
+    }
     H5close();
 
 #ifdef H5_HAVE_PARALLEL
     MPI_Finalize();
 #endif
-    
+
     HDexit(((err_occurred || n_tests_failed_g > 0) ? EXIT_FAILURE : EXIT_SUCCESS));
 }
 
