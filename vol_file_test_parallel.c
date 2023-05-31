@@ -152,7 +152,6 @@ test_open_file(void)
     }
     END_MULTIPART;
 
-
     TESTING_2("test H5Pclose")
 
     if (H5Pclose(fapl_id) < 0)
