@@ -2245,7 +2245,7 @@ H5_DLL herr_t H5CX_pop(hbool_t update_dxpl_props);
         H5_PUSH_FUNC                                                                                         \
         {
 
-/* Use this macro for package-level functions which propgate errors, but don't issue them */
+/* Use this macro for package-level functions which propagate errors, but don't issue them */
 #define FUNC_ENTER_PACKAGE_NOERR                                                                             \
     {                                                                                                        \
         FUNC_ENTER_COMMON_NOERR(H5_IS_PKG(__func__));                                                        \
