@@ -5,8 +5,8 @@ jobs:
     name: Check for spelling errors
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: codespell-project/actions-codespell@master
         with:
           ignore_words_list: msdos,ptd
-          skip:  tools/testfiles/expected/h5repack/h5repack_*.dat
+          skip:  ./tools/testfiles/expected/h5repack/*.dat
