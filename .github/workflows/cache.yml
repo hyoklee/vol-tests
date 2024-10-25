@@ -1,15 +1,11 @@
-name: Test HDF5 cache VOL
+name: cache
 
-# Controls when the action will run. 
 on:
   push:
     branches: [ master ]
-  # Allows you to run this workflow manually from the Actions tab    
   workflow_dispatch:
 jobs:
-  # This workflow contains a single job called "build"
   build:
-    # The type of runner that the job will run on
     runs-on: ubuntu-latest
     steps:
     - name: Checkout vol-tests
@@ -27,12 +23,12 @@ jobs:
     - name: Checkout vol-async
       uses: actions/checkout@v4
       with:
-        repository: hpc-io/vol-async
+        repository: HDFGroup/vol-async
         path: vol-async
     - name: Checkout vol-cache
       uses: actions/checkout@v4
       with:
-        repository: hpc-io/vol-cache
+        repository: HDFGroup/vol-cache
         path: vol-cache
 
     - name: Install dependencies
@@ -122,7 +118,7 @@ jobs:
         ctest -V
 
     - name: Upload
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: git.txt
         path: ${{ runner.workspace }}/vol-tests/hdf5/git.txt

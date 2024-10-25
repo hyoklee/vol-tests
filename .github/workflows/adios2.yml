@@ -1,4 +1,4 @@
-name: Test HDF5 ADIOS2 VOL
+name: adios2
 
 on:
   push:
@@ -9,14 +9,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout vol-tests
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
     - name: Checkout HDF5
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         repository: HDFGroup/hdf5
         path: hdf5
     - name: Checkout ADIOS2
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         repository: ornladios/ADIOS2
         path: adios2
@@ -55,7 +55,7 @@ jobs:
         pwd
         ls
     - name: Upload
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: git.txt
         path: ${{ runner.workspace }}/vol-tests/hdf5/git.txt

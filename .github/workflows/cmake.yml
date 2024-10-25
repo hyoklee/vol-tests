@@ -13,9 +13,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout vol-tests
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
     - name: Checkout HDF5
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
       with:
         repository: HDFGroup/hdf5
         path: hdf5
@@ -44,7 +44,7 @@ jobs:
         ls ./bin
         ./bin/h5vl_test --benchmark-samples 3 | tee ../output.txt     
     - name: Upload
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: git.txt
         path: ${{ runner.workspace }}/vol-tests/output.txt

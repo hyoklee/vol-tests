@@ -1,33 +1,29 @@
-name: Test HDF5 async VOL
+name: async
 
-# Controls when the action will run. 
 on:
   push:
     branches: [ master ]
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 jobs:
-  # This workflow contains a single job called "build"
   build:
-    # The type of runner that the job will run on
     runs-on: ubuntu-latest
     steps:
     - name: Checkout vol-tests
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
     - name: Checkout HDF5
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         repository: HDFGroup/hdf5
         path: hdf5
     - name: Checkout Argobots
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         repository: pmodels/argobots
         path: abt
     - name: Checkout vol-async
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
-        repository: hpc-io/vol-async
+        repository: HDFGroup/vol-async
         path: vol-async
 
     - name: Install dependencies
@@ -79,7 +75,7 @@ jobs:
         ./bin/h5vl_test | tee ../output.txt
         sed -i 's/vol_test/async/g' ../output.txt
     - name: Upload
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: git.txt
         path: ${{ runner.workspace }}/vol-tests/hdf5/git.txt
