@@ -214,5 +214,5 @@ jobs:
       - name: Run API tests
         run: |
           cd "$GITHUB_WORKSPACE/api-tests/build"
-          ctest --build . --parallel 2 -C ${{ matrix.build_mode.cmake }} -V
+          ctest . --parallel 2 -C ${{ matrix.build_mode.cmake }} -V
         if: (matrix.run_tests)
