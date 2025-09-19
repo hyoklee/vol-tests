@@ -100,7 +100,8 @@ jobs:
         echo "HDF5_CACHE_STORAGE_TYPE: SSD" >> $GITHUB_WORKSPACE/config1.cfg
         echo "HDF5_CACHE_REPLACEMENT_POLICY: LRU" >> $GITHUB_WORKSPACE/config1.cfg
         cd build
-        ctest -V
+        # Run parallel tests with MPI to support Cache VOL's MPI_THREAD_MULTIPLE requirement
+        mpiexec -n 1 ./bin/h5vl_test_parallel
     - name: Test against VOL tests (stacked on top of Async VOL) (setup environment)
       run: |
         echo "HDF5_PLUGIN_PATH=/usr/local/lib" >> "$GITHUB_ENV"
@@ -109,7 +110,7 @@ jobs:
       env:
         LD_LIBRARY_PATH: /usr/local/lib
         HDF5_PLUGIN_PATH: /usr/local/lib
-      run: |       
+      run: |
         mkdir -p $GITHUB_WORKSPACE/scratch
         touch $GITHUB_WORKSPACE/config2.cfg
         echo "HDF5_CACHE_STORAGE_SCOPE: LOCAL" >> $GITHUB_WORKSPACE/config2.cfg
@@ -118,7 +119,8 @@ jobs:
         echo "HDF5_CACHE_STORAGE_TYPE: SSD" >> $GITHUB_WORKSPACE/config2.cfg
         echo "HDF5_CACHE_REPLACEMENT_POLICY: LRU" >> $GITHUB_WORKSPACE/config2.cfg
         cd build
-        ctest -V
+        # Run parallel tests with MPI to support Cache VOL's MPI_THREAD_MULTIPLE requirement
+        mpiexec -n 1 ./bin/h5vl_test_parallel
 
     - name: Upload
       uses: actions/upload-artifact@v4
