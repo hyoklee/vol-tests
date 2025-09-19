@@ -4,6 +4,23 @@ on:
   push:
     branches: [ master ]
   workflow_dispatch:
+
+env:
+  ADMIN_PASSWORD: admin
+  ADMIN_USERNAME: admin
+  USER_NAME: test_user1
+  USER_PASSWORD: test
+  USER2_NAME: test_user2
+  USER2_PASSWORD: test
+  HSDS_USERNAME: test_user1
+  HSDS_PASSWORD: test
+  HSDS_PATH: /home/test_user1/
+  HSDS_ENDPOINT: http+unix://%2Ftmp%2Fhs%2Fsn_1.sock
+  HDF5_API_TEST_PATH_PREFIX: /home/test_user1/
+  HDF5_VOL_CONNECTOR: REST
+  ROOT_DIR: ${{github.workspace}}/hsdsdata
+  BUCKET_NAME: hsdstest
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -14,31 +31,72 @@ jobs:
       uses: actions/checkout@v4
       with:
         repository: HDFGroup/hdf5
-        path: hdf5    
+        path: hdf5
     - name: Checkout REST VOL
       uses: actions/checkout@v4
       with:
         repository: HDFGroup/vol-rest
         path: vol-rest
         submodules: recursive
+    - name: Checkout HSDS
+      uses: actions/checkout@v4
+      with:
+        repository: HDFGroup/hsds
+        path: hsds
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.10'
     - name: Install dependencies
       run: |
-        sudo apt-get install ninja-build automake autoconf libtool libtool-bin
         sudo apt-get update -y
+        sudo apt-get install -y ninja-build automake autoconf libtool libtool-bin
         sudo apt-get install -y libyajl-dev libcurl4-openssl-dev
+        python -m pip install --upgrade pip
+        python -m pip install pytest
     - name: Install HDF5
       run: |
         mkdir hdf5/build
         cd hdf5/build
-        cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local -DBUILD_STATIC_LIBS=OFF ..
+        cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local -DBUILD_STATIC_LIBS=OFF -DHDF5_BUILD_HL_LIB=ON -DBUILD_SHARED_LIBS=ON ..
         sudo make -j install
         cd ..
         git rev-parse HEAD > git.txt
+    - name: Install HSDS
+      run: |
+        cd hsds
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+        pip install -e .
     - name: Install REST VOL
       run: |
         mkdir vol-rest/build
         cd vol-rest/build
-        cmake ..
+        cmake -DHDF5_ROOT=/usr/local ..
         make
-        ctest -V
+    - name: Start HSDS
+      run: |
+        cd hsds
+        mkdir -p ${{github.workspace}}/hsdsdata/hsdstest
+        cp admin/config/groups.default admin/config/groups.txt
+        cp admin/config/passwd.default admin/config/passwd.txt
+        # Fix requests version that breaks requests-unixsocket
+        pip install requests==2.31.0
+        ROOT_DIR=${{github.workspace}}/hsdsdata ./runall.sh --no-docker 1 &
+        sleep 15
+    - name: Test HSDS
+      run: |
+        cd hsds
+        python tests/integ/setup_test.py
+    - name: Test REST VOL
+      env:
+        HDF5_PLUGIN_PATH: ${{github.workspace}}/vol-rest/build
+      run: |
+        cd vol-rest/build
+        # Only run REST VOL specific tests, not all tests
+        ctest -R "test_rest_vol" -V
+    - name: Show HSDS Logs on Fail
+      if: ${{failure()}}
+      run: |
+        cd hsds
+        cat hs.log
 
